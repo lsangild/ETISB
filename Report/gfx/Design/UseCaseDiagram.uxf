@@ -4,8 +4,8 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>460</x>
-      <y>270</y>
+      <x>490</x>
+      <y>240</y>
       <w>100</w>
       <h>110</h>
     </coordinates>
@@ -18,22 +18,25 @@
       <x>610</x>
       <y>180</y>
       <w>230</w>
-      <h>290</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>Little helper
 halign=center
-</panel_attributes>
+bg=light_gray</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
       <x>660</x>
-      <y>240</y>
+      <y>210</y>
       <w>130</w>
-      <h>50</h>
+      <h>70</h>
     </coordinates>
-    <panel_attributes>1
+    <panel_attributes>layer=1
+bg=white
+transparency=0
+*UC 1:*
 Sing</panel_attributes>
     <additional_attributes/>
   </element>
@@ -41,68 +44,82 @@ Sing</panel_attributes>
     <id>UMLUseCase</id>
     <coordinates>
       <x>660</x>
-      <y>340</y>
+      <y>300</y>
       <w>130</w>
-      <h>50</h>
+      <h>70</h>
     </coordinates>
-    <panel_attributes>2
-AutoTune as 
-instrument</panel_attributes>
+    <panel_attributes>layer=1
+bg=white
+transparency=0
+*UC 2:*
+Auto tuning
+as instrument</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>900</x>
-      <y>270</y>
+      <x>860</x>
+      <y>240</y>
       <w>80</w>
       <h>110</h>
     </coordinates>
-    <panel_attributes>Prodcuer</panel_attributes>
+    <panel_attributes>Producer</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>530</x>
-      <y>260</y>
-      <w>150</w>
+      <x>560</x>
+      <y>230</y>
+      <w>120</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;50.0;130.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;100.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>530</x>
-      <y>300</y>
-      <w>150</w>
-      <h>80</h>
+      <x>560</x>
+      <y>270</y>
+      <w>120</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;130.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;100.0;50.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>780</x>
-      <y>260</y>
-      <w>150</w>
+      <y>230</y>
+      <w>110</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;130.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;90.0;50.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>780</x>
-      <y>300</y>
-      <w>150</w>
-      <h>80</h>
+      <y>270</y>
+      <w>110</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;60.0;130.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>480</x>
+      <y>160</y>
+      <w>460</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>*UC*</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
