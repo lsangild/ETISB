@@ -29,7 +29,7 @@ bg=light_gray</panel_attributes>
     <id>UMLUseCase</id>
     <coordinates>
       <x>630</x>
-      <y>210</y>
+      <y>240</y>
       <w>140</w>
       <h>70</h>
     </coordinates>
@@ -37,24 +37,8 @@ bg=light_gray</panel_attributes>
 bg=white
 transparency=0
 *UC 1:*
-Live
-performance</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLUseCase</id>
-    <coordinates>
-      <x>630</x>
-      <y>290</y>
-      <w>140</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>layer=1
-bg=white
-transparency=0
-*UC 2:*
-Studio
-recording</panel_attributes>
+Pitch
+correction</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -74,32 +58,21 @@ recording</panel_attributes>
       <x>570</x>
       <y>220</y>
       <w>80</w>
-      <h>40</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;60.0;20.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;50.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>570</x>
-      <y>220</y>
+      <y>270</y>
       <w>80</w>
-      <h>120</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;60.0;100.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>570</x>
-      <y>320</y>
-      <w>80</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>60.0;10.0;10.0;20.0</additional_attributes>
+    <additional_attributes>60.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
@@ -116,7 +89,7 @@ recording</panel_attributes>
     <id>UMLActor</id>
     <coordinates>
       <x>810</x>
-      <y>240</y>
+      <y>230</y>
       <w>80</w>
       <h>110</h>
     </coordinates>
@@ -127,22 +100,11 @@ recording</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>760</x>
-      <y>230</y>
+      <y>260</y>
       <w>80</w>
-      <h>70</h>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;60.0;50.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>760</x>
-      <y>270</y>
-      <w>80</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;50.0;60.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
   </element>
 </diagram>
