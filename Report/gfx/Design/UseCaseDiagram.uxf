@@ -4,12 +4,12 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>490</x>
-      <y>240</y>
-      <w>100</w>
+      <x>520</x>
+      <y>190</y>
+      <w>60</w>
       <h>110</h>
     </coordinates>
-    <panel_attributes>Artist/Singer</panel_attributes>
+    <panel_attributes>Artist</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -17,7 +17,7 @@
     <coordinates>
       <x>610</x>
       <y>180</y>
-      <w>230</w>
+      <w>180</w>
       <h>200</h>
     </coordinates>
     <panel_attributes>Little helper
@@ -28,39 +28,40 @@ bg=light_gray</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>660</x>
+      <x>630</x>
       <y>210</y>
-      <w>130</w>
+      <w>140</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>layer=1
 bg=white
 transparency=0
 *UC 1:*
-Sing</panel_attributes>
+Live
+performance</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>660</x>
-      <y>300</y>
-      <w>130</w>
+      <x>630</x>
+      <y>290</y>
+      <w>140</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>layer=1
 bg=white
 transparency=0
 *UC 2:*
-Auto tuning
-as instrument</panel_attributes>
+Studio
+recording</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>860</x>
-      <y>240</y>
+      <x>510</x>
+      <y>300</y>
       <w>80</w>
       <h>110</h>
     </coordinates>
@@ -70,56 +71,78 @@ as instrument</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>230</y>
-      <w>120</w>
-      <h>70</h>
+      <x>570</x>
+      <y>220</y>
+      <w>80</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;50.0;100.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>270</y>
-      <w>120</w>
-      <h>70</h>
+      <x>570</x>
+      <y>220</y>
+      <w>80</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;100.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;100.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>230</y>
-      <w>110</w>
-      <h>70</h>
+      <x>570</x>
+      <y>320</y>
+      <w>80</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;90.0;50.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>780</x>
-      <y>270</y>
-      <w>110</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;50.0;90.0;10.0</additional_attributes>
+    <additional_attributes>60.0;10.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>480</x>
+      <x>510</x>
       <y>160</y>
-      <w>460</w>
-      <h>240</h>
+      <w>380</w>
+      <h>250</h>
     </coordinates>
     <panel_attributes>*UC*</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>810</x>
+      <y>240</y>
+      <w>80</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Audience</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>230</y>
+      <w>80</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>270</y>
+      <w>80</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;50.0;60.0;10.0</additional_attributes>
   </element>
 </diagram>
