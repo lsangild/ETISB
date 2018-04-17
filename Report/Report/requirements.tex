@@ -103,4 +103,52 @@ These use cases establish the foundation of the requirements specification.
 		\bottomrule
 	\end{tabularx}
 \end{table}
-\fxnote{What is meant with resolution?}
+
+\section{Functional Requirements}
+A MoSCoW is presented below to account for the functional requirements.
+
+\begin{itemize}
+	\item[MUST] ~
+	\begin{itemize}
+		\item \systemName must shift the primary frequency of the input signal to the nearest step on the desired scale.
+		\item \systemName must do the processing quickly, so there is no hearable delay in the sound.
+		\item \systemName must do the processing so there is no noticeable noise when the input frequency changes.
+	\end{itemize}
+	\item[SHOULD] ~
+	\begin{itemize}
+		\item The user should be able to changes how 'effective/strong' the auto tune is by pressing buttons on the system.
+		\item The user should be able to turn auto tuner on/off by pressing a button.
+		\item Little helper should have a LED indicating if it is on or off.
+		\item Little helper should have 4 LED's indicating which level the auto tuner is on where 0 LED's on is low. and 4 LED's on is high.
+	\end{itemize}
+	\item[COULD] ~
+	\begin{itemize}
+		\item \systemName could be configured by a GUI, so the user can change all the different parameters, such as scale, force and speed.
+		\item \systemName could take noisy environment into account, when finding the primary frequency.
+	\end{itemize}
+	\item[WON'T] ~
+	\begin{itemize}
+		\item \systemName won't make you sing like Freddie Mercury.
+	\end{itemize}
+\end{itemize}
+
+\section{Non-functional Requirements}
+\begin{itemize}
+	\item[R1] \systemName must process audio signals in the band \SIrange{82}{1046.5}{\hertz}. 
+	\item[R2] \systemName must correct the audio signal to the nearest step on the scale.
+	\item[R3] \systemName latency should be less than \SI{50}{\milli\second}.
+	\item[R4] The filter algorithm must be realized using native fixed point fractional types (fract, accum).
+	\item[R5] \systemName should fill less than 16k bytes.
+	\item[R6] The filter should be optimized in speed performance for the B533.
+	\item[R7] The filter should have a maximum DSP load of \SI{95}{\percent}.
+\end{itemize}
+
+\section{Derived Requirements}
+\begin{itemize}
+	\item[DR1] \systemName must sample with a samle rate of \SI{48}{\kilo\hertz}.
+	Derived from R1, where $f_{max}=\SI{1046.5}{\hertz}$ then minimum sampling frequency must be $fs_{min} = f_{max}\cdot 2 = \SI{2093}{\hertz}$.
+	\item[DR2] The filter latency must be delayed by \num{2000} samples.
+	Derived from R3 where the latency is less than \SI{50}{\milli\second}, $fs = \SI{48}{\kilo\hertz}$, $t_d = \SI{41}{\milli\second}$.
+	\item[DR3] The filter must use a maximum of \num{11875} cycles of DSP processing per samples. Derived from R6, R7 and DR1.
+	$\frac{\SI{600}{\mega\hertz}}{\SI{48}{\kilo\hertz}}\cdot\SI{95}{\percent} = \num{11875}$.
+\end{itemize}
