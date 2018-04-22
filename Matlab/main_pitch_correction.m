@@ -11,10 +11,12 @@ y=sin(2*pi*f*t);
 audiowrite('400HzSinus.wav',y,48000)
 
 %% listen to the tone.
+clear, clc
 [x,fs]=audioread('400HzSinus.wav');
-soundsc(y)
+soundsc(x,fs)
 %%
-xfft=fft(y);
+x=new_x';
+xfft=fft(x);
 %find max value
 P2 = abs(xfft/length(x));
 P1 = P2(1:(length(x)/2 + 1));
@@ -42,3 +44,27 @@ ylabel('|P1(f)|')
 
 %%
 [fftSignal, maxFreq, maxFreqBin] = fftSignal(x,fs);
+
+%% can change the freq, but not in a way we want it to. 
+T=length(x)/fs; %6 sec long
+hz10 = 10;
+%change the freq to 600Hz, so add 200Hz
+f_add=200*6; %= 10 hz
+f_add = f_add * hz10
+%add this to the old samplings freq we get
+fs_new=fs-f_add;
+
+% the amount of samples the new signal needs is 
+N=T*fs_new;
+
+% generate a new vector which can contain the full signal
+% and generates a vector size N with value going from 1, length(x)
+vec=linspace(1, length(x), N);
+
+% do interpolation
+new_x = interp1(1:length(x), x, vec);
+
+[fftSignal, maxFreq, maxFreqBin] = fftSignal(new_x',fs);
+
+%%
+soundsc(new_x,fs)
