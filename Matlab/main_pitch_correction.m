@@ -69,3 +69,21 @@ new_x = interp1(1:length(x), x, vec);
 
 %%
 plotFFT(new_x,fs)
+%%
+[newFs] = shiftSimpleSine(x, fs);
+[xfft, maxFreq, maxFreqBin] = fftSignal(x,newFs);
+%%
+N_add=length(x)*(newFs/fs) - length(x);
+%find phase
+phs = angle(fftshift(xfft));
+ly = length(xfft);
+f = (-ly/2:ly/2-1)/ly*fs;
+plot(f,phs/pi)
+xlabel 'Frequency (Hz)'
+ylabel 'Phase / \pi'
+grid
+
+
+
+
+
