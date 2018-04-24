@@ -4,13 +4,13 @@
 %output the bin corrosponding to freq with max value
 %output fft of input signal
 
-function [fftSignal, maxFreq, maxFreqBin] = fftSignal(inputSignal,fs)
+function [xfft, maxFreq, maxFreqBin] = fftSignal(inputSignal,fs)
 
 %fft the signal
-fftSignal=fft(inputSignal);
+xfft=fft(inputSignal);
 
 %find max value
-P2 = abs(fftSignal/length(inputSignal));
+P2 = abs(xfft/length(inputSignal));
 P1 = P2(1:(length(inputSignal)/2 + 1));
 P1(2:end-1) = 2*P1(2:end-1);
 
