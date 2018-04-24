@@ -4,8 +4,8 @@
 \chapter{Requirements}
 
 In this chapter the requirements for the system will be described.
-In total four use cases have been defined, which describe the functionality and the actor's interaction with the \systemName system.
-These use cases establish the foundation of the requirements specification.
+A single use case has been defined, which describes the functionality and the actor's interaction with the \systemName system.
+These use case establish the foundation of the requirements specification.
 
 \begin{figure}[H]
 	\centering
@@ -111,12 +111,12 @@ A MoSCoW is presented below to account for the functional requirements.
 	\item[MUST] ~
 	\begin{itemize}
 		\item \systemName must shift the primary frequency of the input signal to the nearest step on the desired scale.
-		\item \systemName must do the processing quickly, so there is no hearable delay in the sound.
+		\item \systemName must do the processing quickly, so there is no audible delay in the sound.
 		\item \systemName must do the processing so there is no noticeable noise when the input frequency changes.
 	\end{itemize}
 	\item[SHOULD] ~
 	\begin{itemize}
-		\item The user should be able to changes how 'effective/strong' the auto tune is by pressing buttons on the system.
+		\item The user should be able to change how 'effective/strong' the auto tune is by pressing buttons on the system.
 		\item The user should be able to turn auto tuner on/off by pressing a button.
 		\item Little helper should have a LED indicating if it is on or off.
 		\item Little helper should have 4 LED's indicating which level the auto tuner is on where 0 LED's on is low. and 4 LED's on is high.
@@ -134,11 +134,11 @@ A MoSCoW is presented below to account for the functional requirements.
 
 \section{Non-functional Requirements}
 \begin{itemize}
-	\item[R1] \systemName must process audio signals in the band \SIrange{82}{1046.5}{\hertz}. 
+	\item[R1] \systemName must process audio signals in the C-major scale (\SIrange{261.626}{493.883}{\hertz}).
 	\item[R2] \systemName must correct the audio signal to the nearest step on the scale.
 	\item[R3] \systemName latency should be less than \SI{50}{\milli\second}.
 	\item[R4] The filter algorithm must be realized using native fixed point fractional types (fract, accum).
-	\item[R5] \systemName should fill less than 16k bytes.
+	\item[R5] \systemName should fill less than \SI{16}{\kilo\byte}.
 	\item[R6] The filter should be optimized in speed performance for the B533.
 	\item[R7] The filter should have a maximum DSP load of \SI{95}{\percent}.
 \end{itemize}
@@ -153,9 +153,3 @@ A MoSCoW is presented below to account for the functional requirements.
 	$\frac{\SI{600}{\mega\hertz}}{\SI{48}{\kilo\hertz}}\cdot\SI{95}{\percent} = \num{11875}$.
 \end{itemize}
 
-Piano frequency diffs are as low as \SI{27.5}{\hertz}
-\begin{align}
-	\frac{f_s}{\Delta f} &= N \\
-	\frac{\SI{48}{\kilo\hertz}}{\SI{27.5}{\hertz}} &= \num{1745.45} \approx \num{2048} \\
-	\Delta f &= \frac{\SI{48}{\kilo\hertz}}{2048} = \SI{23.4}{\hertz}
-\end{align}

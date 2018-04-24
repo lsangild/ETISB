@@ -75,14 +75,6 @@ plotFFT(new_x,fs)
 %%
 N_add=length(x)*(newFs/fs) - length(x);
 %find phase
-phs = angle(fftshift(xfft));
-ly = length(xfft);
-f = (-ly/2:ly/2-1)/ly*fs;
-plot(f,phs/pi)
-xlabel 'Frequency (Hz)'
-ylabel 'Phase / \pi'
-grid
-
 
 
 
