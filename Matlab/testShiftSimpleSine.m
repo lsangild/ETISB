@@ -2,7 +2,7 @@
 [x, fs] = audioread('420HzSinus.wav');
 
 %% Plot fft
-%plotFFT(x, fs);
+plotFFT(x, fs);
 
 %% Find new fs
 [newFs, newSignal] = shiftSimpleSine(x, fs);

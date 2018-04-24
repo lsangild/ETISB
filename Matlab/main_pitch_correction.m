@@ -1,5 +1,16 @@
 %% picth correction project
-
+%%
+%%
+%This is currently a test matlab script the main which calls the function
+%is in testShiftSimpleSine.m
+%
+%
+%
+%
+%
+%
+%
+%
 %% Generate sine wave with freq f.
 f=400;
 Amp=1;
