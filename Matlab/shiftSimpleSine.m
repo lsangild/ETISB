@@ -7,7 +7,7 @@ function [newFs, newSignal] = shiftSimpleSine(signal, fs)
 [xfft, maxFreq, maxFreqBin] = fftSignal(signal, fs);
 
 %% Find nearest piano tone
-pianoFreq = [349.228, 440, 493.883, 523.251];
+pianoFreq = csvread('PianoFreqs.dat');
 [~, index] = min(abs(pianoFreq - maxFreq));
 newTone = pianoFreq(index);
 
