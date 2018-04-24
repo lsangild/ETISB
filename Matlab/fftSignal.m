@@ -5,7 +5,6 @@
 %output fft of input signal
 
 function [fftSignal, maxFreq, maxFreqBin] = fftSignal(inputSignal,fs)
-
 %fft the signal
 fftSignal=fft(inputSignal);
 

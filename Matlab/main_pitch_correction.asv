@@ -45,6 +45,7 @@ ylabel('|P1(f)|')
 
 %%
 [xfft, maxFreq, maxFreqBin] = fftSignal(x,fs);
+[xfft, maxFreq, maxFreqBin] = fftSignal(x,fs);
 
 %% can change the freq, but not in a way we want it to. 
 T=length(x)/fs; %6 sec long
