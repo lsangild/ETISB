@@ -4,7 +4,7 @@
 %output the bin corrosponding to freq with max value
 %output fft of input signal
 
-function [fftSignal, maxFreq, maxFreqBin] = fftSignal(inputSignal,fs)
+function [xfft, maxFreq, maxFreqBin] = fftSignal(inputSignal,fs)
 %fft the signal
 fftSignal=fft(inputSignal);
 
