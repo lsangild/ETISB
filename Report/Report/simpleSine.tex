@@ -1,7 +1,30 @@
 % !TEX root = ../main.tex
 % !TEX spellcheck = en_GB
 
-\chapter{Pitch shift simple sine}
+\chapter{Pitch shift pure sine}
+\label{sec:puresine}
+
+This chapter deals with the issue of moving a pure sine of a frequency between \SIrange{200}{500}{\hertz} onto the nearest fundamental frequency of the C-major scale\footnote{\url{https://en.wikipedia.org/wiki/Piano_key_frequencies}}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c}
+		\toprule
+		Name & Frequency (\si{\hertz}) \\
+		\midrule
+		C$_4$ & \num{261.626} \\
+		D$_4$ & \num{293.665} \\
+		E$_4$ & \num{329.628} \\
+		F$_4$ & \num{349.228} \\
+		G$_4$ & \num{391.995} \\
+		A$_4$ & \num{440.000} \\
+		B$_4$ & \num{493.883} \\
+		\bottomrule
+	\end{tabular}
+	\caption{Table of C-major fundamental frequencies.}
+	\label{tab:cmajor}
+\end{table}
+
 \subimport{SimpleSine/}{analysis.tex}
 \subimport{SimpleSine/}{design.tex}
 \subimport{SimpleSine/}{modelling.tex}
