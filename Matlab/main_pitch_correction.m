@@ -12,14 +12,14 @@
 %
 %
 %% Generate sine wave with freq f.
-f=400;
+f=470;
 Amp=1;
 ts=1/48000;
 T=6;
 t=0:ts:(T - ts);
 y=sin(2*pi*f*t);
 %plot(t,y)
-audiowrite('400HzSinus.wav',y,48000)
+audiowrite('470HzSinus.wav',y,48000)
 
 %% listen to the tone.
 clear, clc

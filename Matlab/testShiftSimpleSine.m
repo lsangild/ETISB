@@ -1,5 +1,5 @@
 %% Load audio
-[x, fs] = audioread('420HzSinus.wav');
+[x, fs] = audioread('470HzSinus.wav');
 
 %% Plot fft
 plotFFT(x, fs);
