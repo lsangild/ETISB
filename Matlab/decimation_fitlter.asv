@@ -29,10 +29,10 @@ y = downsample(xfiltert, 10);
 %soundsc(y, fs/10)
 [xfft, maxFreq, maxFreqBin] = fftSignal(y,fs/10);
 %%
-for r=1 : 2
-    for i=1 : length(scaledcoef)
-        hex = myd2h_kims( scaledcoef(r,i), 1, 15 );
-        dec(r,i) = myh2d( hex, 1, 15);
+for i=1 : length(scaledcoef)
+    for r=1 : 2
+        hex = myd2h_kims( scaledcoef(i), 1, 15 );
+        dec(i) = myh2d( hex, 1, 15);
     end
     
 end
