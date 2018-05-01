@@ -6,7 +6,7 @@
     <coordinates>
       <x>230</x>
       <y>330</y>
-      <w>110</w>
+      <w>120</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>valign=center
@@ -19,13 +19,13 @@ Preprocessing</panel_attributes>
     <coordinates>
       <x>410</x>
       <y>330</y>
-      <w>110</w>
+      <w>120</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>valign=center
 halign=center
 Signal
-Processing</panel_attributes>
+processing</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -33,60 +33,71 @@ Processing</panel_attributes>
     <coordinates>
       <x>590</x>
       <y>330</y>
-      <w>110</w>
+      <w>120</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>valign=center
 halign=center
-Postprocessing</panel_attributes>
+Post processing</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>150</x>
+      <x>130</x>
       <y>340</y>
-      <w>100</w>
+      <w>120</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 x(t)</panel_attributes>
-    <additional_attributes>80.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
+      <x>340</x>
       <y>340</y>
-      <w>100</w>
+      <w>90</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 x(n)</panel_attributes>
-    <additional_attributes>80.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>70.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>690</x>
+      <x>700</x>
       <y>340</y>
-      <w>100</w>
+      <w>120</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 y(t)</panel_attributes>
-    <additional_attributes>80.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
+      <x>520</x>
       <y>340</y>
-      <w>100</w>
+      <w>90</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 y(n)</panel_attributes>
-    <additional_attributes>80.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>70.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>200</x>
+      <y>300</y>
+      <w>540</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Little Helper</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
