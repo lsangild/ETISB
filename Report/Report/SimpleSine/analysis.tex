@@ -9,3 +9,5 @@ The issue of changing the frequency of a pure sine wave can be handled in a numb
 	\item Create a new sine at the target frequency, without changing the sampling frequency.
 	\item Interpolating or decimating the input (only works if $f_{target}=\frac{f_{meas}}{n}\vee f_{target} =n\cdot f_{meas}$, where $n$ is an integer greater than zero.)
 \end{itemize}
+
+The first option is chosen for the first implementation, and is described in \cref{sec:PureSineModelling}.

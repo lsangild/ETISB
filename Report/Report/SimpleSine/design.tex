@@ -10,7 +10,7 @@ To fulfil the requirements specified, the system is split into three parts: Prep
 \paragraph{Preprocessing} handles the analog to digital conversion and preprocessing allowing compliance with Non-functional requirement R1 and R2 for the Signal processing block.
 This means Preprocessing takes the input, processes it and outputs a sample frequency and buffer size whose ratio allows for frequency bins smaller than \SI{2.5}{\hertz}.
 
-\paragraph{Signal processing} finds the frequency/tone to move and moves it to the corresponding C-major tone.
+\paragraph{Signal processing} finds the frequency/tone to move and moves it to the corresponding C-major tone, shown in \cref{tab:cmajor}.
 
 \paragraph{Post processing} ensures the sound quality is maintained after Preprocessing and Signal processing.
 

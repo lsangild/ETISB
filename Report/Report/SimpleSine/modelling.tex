@@ -2,5 +2,21 @@
 % !TEX spellcheck = en_GB
 
 \section{Modelling}
+\label{sec:PureSineModelling}
+\subsection{Preprocessing}
+The preprocessing in MATLAB takes the FFT of the incoming signal, finds the largest peak in the spectrum and determines the ratio between the input and the goal frequency.
+The ratio is used to determine how to change the frequency, as shown in \cref{eq:1ratio}.
+
+\begin{equation}
+	f_{s,new} = f_{s,in}\cdot\frac{f_{new}}{f_{in}}
+	\label{eq:1ratio}
+\end{equation}
+
+\subsection{Signal processing}
+If the new sampling frequency, determined in preprocessing, is lower than the old, samples are cut from the end of the signal. \fxnote{figurer? MATLAB kode?}
+If the new sampling frequency is higher than the old the phase at which the input signal ends is determined.
+
+\subsection{Post processing}
+If the input is lower than the output sampling frequency, the found phase is used to add a tail to the signal with the phase offset, to create an output signal of equal time as the input signal.
 
 \FloatBarrier
