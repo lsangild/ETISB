@@ -7,7 +7,7 @@
 
 #include "DynamicFilter.h"
 
-#include <string.h>
+//#include <string.h>
 #include <stdio.h>
 #include <cycle_count.h>
 
@@ -30,25 +30,56 @@ DynamicFilter::~DynamicFilter(){
 
 }
 
+/*void DynamicFilter::hilbert(){
+	// parameters
+	int block_exponent;
+	fract16 instafreq[N_FFT];
+	complex_fract16 scale;
+	scale.re=2; scale.im=0;
+
+	// Hilbert transform
+	zHilbert[0] = m_fft_output[0];
+	for (int i = 1; i<N_FFT/2; i++){
+		//zHilbert[i] = cmlt_fr16(m_fft_output[i], scale);
+	}
+	zHilbert[N_FFT/2] = m_fft_output[N_FFT/2];
+
+	// ifft of the hilbert signal
+	ifft_fr16(zHilbert, m_ifft_output, m_twiddle_table, 1, N_FFT, &block_exponent, 1);
+
+	////// instant freqeunecy finding //////
+	//first finding the phase
+	for (int i = 0; i<N_FFT; i++){
+		instafreq[i] = arg_fr16(m_ifft_output[i]);
+	}
+	// unwraping with threshold 2PI
+
+	// find the diff
+
+}*/
+
 void DynamicFilter::process(short* input, short* output, short len)
 {
 	int block_exponent;
-	cycle_t start_count;
+	/*cycle_t start_count;
 	cycle_t final_count;
 
 	// Perform notch filtering
 	START_CYCLE_COUNT(start_count);
 	m_IIRFilter.process(input, output, len); // ændres til pitch shift algorithme
 	STOP_CYCLE_COUNT(final_count,start_count);
-	PRINT_CYCLES("Number of cycles for filter-process: ",final_count);
+	PRINT_CYCLES("Number of cycles for filter-process: ",final_count);*/
 
 
-	START_CYCLE_COUNT(start_count);
+	//START_CYCLE_COUNT(start_count);
 	rfft_fr16(input, m_fft_output, m_twiddle_table, 1, len, &block_exponent, 1);
 	fft_magnitude_fr16 (m_fft_output, m_real_magnitude, len, block_exponent, 1);
-	findMax(PEAK_THRESHOLD);
-	STOP_CYCLE_COUNT(final_count,start_count);
-	PRINT_CYCLES("Number of cycles for FFT part: ",final_count);
+	//hilbert();
+
+
+	//findMax(PEAK_THRESHOLD);
+	//STOP_CYCLE_COUNT(final_count,start_count);
+	//PRINT_CYCLES("Number of cycles for FFT part: ",final_count);
 
 
  }

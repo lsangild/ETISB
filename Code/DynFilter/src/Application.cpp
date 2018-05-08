@@ -16,6 +16,7 @@
 #include "AlgoTester.h"
 #include "DynamicFilter.h"
 
+
 // Initialization of sample block processing inputs
 void InitProcess(Algorithm *left, Algorithm *right);
 // Initialization of control for switch inputs
