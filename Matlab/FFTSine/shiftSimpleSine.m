@@ -38,3 +38,5 @@ else
   tail = sin(2*pi*newTone.*tail + phase);
   newSignal = [signal; tail];
 endif
+
+end
