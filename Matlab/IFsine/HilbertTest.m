@@ -7,6 +7,10 @@ T=0.04267/4;
 t=0:ts:(T - ts);
 y=sin(2*pi*f*t)';
 
+%% Load data in stead
+y = csvread('../x_signal470.txt');
+y(:,2) = []; % Remove extra column
+
 %% Calc with built in functions
 %z = hilbert(y);
 %instfreq = Fs/(2*pi)*diff(unwrap(angle(z)));
