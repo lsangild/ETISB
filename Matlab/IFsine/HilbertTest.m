@@ -3,7 +3,7 @@ f=470;
 Amp=1;
 Fs = 48000;
 ts=1/Fs;
-T=0.05;
+T=0.04267/4;
 t=0:ts:(T - ts);
 y=sin(2*pi*f*t)';
 
@@ -13,7 +13,7 @@ y=sin(2*pi*f*t)';
 
 %% Home made
 % hilbert
-N = 2400;
+N = length(t);
 W = 1;
 y=fft(y);
 y=[y(1,:);
@@ -37,15 +37,15 @@ for i = 2:N
   dif = rem(z(i - 1) - z(i) + pi, 2* pi);
   if (dif < 0)
     dif = dif + 2 * pi;
-  endif
+  end
   z(i) = dif - pi;
   z(i) = z(i - 1) - z(i);
-endfor
+end
 
 %% Diff
 for k = 2:(numel(z))
   z(k - 1, 1) = z(k) - z(k - 1);
-endfor
+end
 % Remove last diff
 z(end) = [];
 
