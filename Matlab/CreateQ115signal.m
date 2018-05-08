@@ -1,10 +1,10 @@
 fs = 48000;
-Amp=1;
+Amp=0.8;
 ts=1/fs;
 T = 0.04267/4;;
 t=0:ts:T - 1/fs;
 
-scale = 1;
+scale = Amp;
 y=scale.*sin(2*pi*470*t)';
 
 % gem i fil
