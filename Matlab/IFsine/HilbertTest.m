@@ -16,9 +16,10 @@ y=sin(2*pi*f*t)';
 N = length(t);
 W = 1;
 y=fft(y);
-y=[y(1,:);
-   2*y(2:N/2,:);
-   y(N/2+1,:);
+% Division by 2, in stead of multiplication to keep everything below 1 on crosscore
+y=[y(1,:)/2;
+   y(2:N/2,:);
+   y(N/2+1,:)./2;
    zeros(N/2-1, W)];
 z=ifft(y);
 
