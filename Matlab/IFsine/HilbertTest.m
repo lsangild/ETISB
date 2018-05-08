@@ -32,6 +32,7 @@ zaud = diff(unwrap(angle(z)));
 z = atan2(imag(z),real(z));
 
 %% Unwrap
+% https://stackoverflow.com/questions/15634400/continous-angles-in-c-eq-unwrap-function-in-matlab
 for i = 2:N
   dif = rem(z(i - 1) - z(i) + pi, 2* pi);
   if (dif < 0)
