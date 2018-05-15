@@ -16,7 +16,6 @@
 #include "AlgoTester.h"
 #include "DynamicFilter.h"
 
-
 // Initialization of sample block processing inputs
 void InitProcess(Algorithm *left, Algorithm *right);
 // Initialization of control for switch inputs
@@ -58,17 +57,9 @@ void main(void)
 	InitAlgoProcess(); // Initialization of processing algorithms
 	FilterLeft.updateDynFilter();
 	AlgoTester algoTest(&FilterLeft);
-	algoTest.runTestDyn("..\\src\\x_signal966.txt", "..\\src\\y_signal966.txt", "..\\src\\fft_mag.txt");
+	algoTest.runTestDyn("..\\src\\x_signal470.txt", "..\\src\\y_signal479.txt", "..\\src\\fft_mag.txt");
 	FilterLeft.updateDynFilter();
-	algoTest.runTestDyn("..\\src\\x_signal966.txt", "..\\src\\y_signal966.txt", "..\\src\\fft_mag.txt");
 
-	algoTest.runTestDyn("..\\src\\x_signal1921.txt", "..\\src\\y_signal1921.txt", "..\\src\\fft_mag.txt");
-	FilterLeft.updateDynFilter();
-	algoTest.runTestDyn("..\\src\\x_signal1921.txt", "..\\src\\y_signal1921.txt", "..\\src\\fft_mag.txt");
-
-	algoTest.runTestDyn("..\\src\\x_signal4921.txt", "..\\src\\y_signal4921.txt", "..\\src\\fft_mag.txt");
-	FilterLeft.updateDynFilter();
-	algoTest.runTestDyn("..\\src\\x_signal4921.txt", "..\\src\\y_signal4921.txt", "..\\src\\fft_mag.txt");
 #else
 	InitSystemHardware(); // Initialization of BF533
 	InitAlgoProcess(); // Initialization of processing algorithms

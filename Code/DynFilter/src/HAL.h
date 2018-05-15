@@ -50,7 +50,7 @@
 #define ADC_CONTROL_3 0xE000
 
 #define SAMPLE_FS				48000	// Sample rate in Hz
-#define INPUT_SIZE				2048	// 128
+#define INPUT_SIZE				512	// 128
 #define TOTAL_FRAME				2
 
 // size of array sCodec1836TxRegs

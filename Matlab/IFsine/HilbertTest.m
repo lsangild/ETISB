@@ -27,9 +27,10 @@ y=[y(1,:)/2;
    zeros(N/2-1, W)];
 z=ifft(y);
 
-%%
-z = csvread('../y_ifft.txt');
-z(:,2) = []; % Remove extra column
+%% read in file from CC which is already ifft
+load('../ifft_CC.mat');
+z=ifft_CC;
+%%z(:,2) = []; % Remove extra column
 %% Do easy way
 instfreq = Fs/(2*pi)*diff(unwrap(angle(z)));
 za = angle(z);
@@ -38,6 +39,10 @@ zaud = diff(unwrap(angle(z)));
 
 %% Angle
 z = atan2(imag(z),real(z));
+
+%% read in data which has already been taken argument off
+z = csvread('../y_argument.txt');
+z(:,2) = []; % Remove extra column
 
 %% Unwrap
 % https://stackoverflow.com/questions/15634400/continous-angles-in-c-eq-unwrap-function-in-matlab

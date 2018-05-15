@@ -10,7 +10,7 @@ b * AlgoTester.cpp
 #include "DynamicFilter.h"
 
 // Fixed signal size must be manually changed
-#define 	N  1024  // Test signal length
+#define 	N  512  // Test signal length
 
 // Test signal used for testing made as global variables for plotting
 section("L1_data_a") short TestSignal[N]; // Test signal loaded from test input file

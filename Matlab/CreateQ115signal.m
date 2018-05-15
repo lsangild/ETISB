@@ -5,7 +5,7 @@ T = 0.04267/4;
 t=0:ts:T - 1/fs;
 
 scale = Amp;
-y=scale.*sin(2*pi*470*t)';
+y=scale.*sin(2*pi*800*t)';
 
 % gem i fil
 y16 = y*2^15;
