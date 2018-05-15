@@ -3,12 +3,12 @@ f=470;
 Amp=1;
 Fs = 48000;
 ts=1/Fs;
-T=0.04267/2;
+T=0.04267/4;
 t=0:ts:(T - ts);
 y=sin(2*pi*f*t)';
 
 %% Load data in stead
-y = csvread('../x_signal470.txt');
+y = csvread('../y_signal470.txt');
 y(:,2) = []; % Remove extra column
 
 %% Calc with built in functions
@@ -19,7 +19,7 @@ y(:,2) = []; % Remove extra column
 % hilbert
 N = length(t);
 W = 1;
-y=fft(y);
+%y=fft(y);
 % Division by 2, in stead of multiplication to keep everything below 1 on crosscore
 y=[y(1,:)/2;
    y(2:N/2,:);
@@ -27,6 +27,9 @@ y=[y(1,:)/2;
    zeros(N/2-1, W)];
 z=ifft(y);
 
+%%
+z = csvread('../y_ifft.txt');
+z(:,2) = []; % Remove extra column
 %% Do easy way
 instfreq = Fs/(2*pi)*diff(unwrap(angle(z)));
 za = angle(z);
