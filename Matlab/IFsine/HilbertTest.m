@@ -28,8 +28,9 @@ y=[y(1,:)/2;
 z=ifft(y);
 
 %% read in file from CC which is already ifft
-%load('../ifft_CC.mat');
-%z=ifft_CC;
+load('../ifft_CC_888.mat');
+z=ifft_CC;
+plot(abs(z))
 %z(:,2) = []; % Remove extra column
 %% Do easy way
 instfreq = Fs/(2*pi)*diff(unwrap(angle(z)));
