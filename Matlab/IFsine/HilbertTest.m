@@ -8,7 +8,7 @@ t = 0:ts:(T - ts);
 y = sin(2*pi*f*t)';
 
 %% Load data in stead
-y = csvread('x_signal470.txt');
+y = csvread('x_signal888.txt');
 y(:,2) = []; % Remove extra column
 
 %% Calc with built in functions
@@ -54,7 +54,7 @@ for i = 2:N
   x = z(i - 1) - z(i) + 2^15;
   y = 2 * 2^15;
   %dif = rem(z(i - 1) - z(i) + 2^15, 2 * (2^15));
-  dif = x - y * floor(x / y);
+  dif = rem(x, y);
   if (dif < 0)
     %dif = dif + 2 * pi;
     dif = dif + 2 * 2^15;
