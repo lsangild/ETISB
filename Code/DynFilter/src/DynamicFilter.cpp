@@ -92,9 +92,10 @@ void DynamicFilter::hilbert(){
 	int block_exponent;
 	fract16 instafreq[N_FFT];
 	fract16 meanFreq = 0;
-	fract32 temp =0;
-	fract16 dif;
+	int32_t temp =0;
+	double dif;
 	complex_fract16 scale;
+	int32_t temp32[512];
 	scale.re=0.5; scale.im=0.5;
 
 	// Hilbert transform
@@ -116,24 +117,31 @@ void DynamicFilter::hilbert(){
 	}
 	error = writeSignal_fr16(instafreq,  "..\\src\\y_argument.txt");
 	// unwrapping with threshold 2PI
+	temp32[0] = instafreq[0];
     for(int i = 1; i<N_FFT;i++){
-    	dif = fmod(instafreq[i-1] - instafreq[i] + PI_FLOAT, 2*PI_FLOAT);
+    	int x = ((int16_t)instafreq[i - 1] - (int16_t)instafreq[i]) + (1 << 15);
+    	dif = x % (2 * (1 << 15));
+    	//dif = fmod(instafreq[i-1] - instafreq[i] + PI_FLOAT, 2*PI_FLOAT);
     	if(dif<0)
-    		dif += 2*PI_FLOAT;
-    	instafreq[i] = dif - PI_FLOAT;
-    	instafreq[i] = instafreq[i-1] - instafreq[i];
+    		dif += 2 * (1 << 15);//dif += 2*PI_FLOAT;
+    	temp32[i] = ((int32_t)(dif - (1 << 15)));
+    	temp32[i] = temp32[i-1] - temp32[i];
+    	//instafreq[i] = ((int32_t)(dif - (1 << 15)))>>16;
+    	//instafreq[i] = instafreq[i-1] - instafreq[i];
     }
     error = writeSignal_fr16(instafreq,  "..\\src\\y_unwrapping.txt");
     // find the diff
     for(int i = 1; i<N_FFT;i++){
-    	instafreq[i-1] = (instafreq[i] - instafreq[i-1]) * fs/(2*PI_FLOAT);
+    	temp32[i-1] = (temp32[i] - temp32[i-1]) * fs/(2*PI_FLOAT);
+    	//instafreq[i-1] = (instafreq[i] - instafreq[i-1]) * fs/(2*PI_FLOAT);
     }
     error = writeSignal_fr16(instafreq,  "..\\src\\y_diff.txt");
     //finding the mean and therefore the value
     for(int i = 100; i<N_FFT-99;i++){
-    	temp += instafreq[i];
+    	temp += temp32[i];
+    	//temp += instafreq[i];
     }
-    meanFreq = 0.0668849*  (temp/(N_FFT-200));
+    meanFreq = ((temp/(N_FFT-200)) * PI_FLOAT) / (1<<15);
 
 }
 
