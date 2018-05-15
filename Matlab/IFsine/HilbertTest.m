@@ -1,5 +1,5 @@
 %% Create tester
-f = 888;
+f = 222;
 Amp = 1;
 Fs = 48000;
 ts = 1/Fs;
@@ -8,7 +8,7 @@ t = 0:ts:(T - ts);
 y = sin(2*pi*f*t)';
 
 %% Load data in stead
-y = csvread('x_signal888.txt');
+y = csvread('x_signal245.txt');
 y(:,2) = []; % Remove extra column
 
 %% Calc with built in functions
