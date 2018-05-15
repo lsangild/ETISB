@@ -43,22 +43,23 @@ plot(z)
 %% read in data which has already been taken argument off
 z = csvread('../y_argument.txt');
 z(:,2) = []; % Remove extra column
-%z = z/(2^15) * pi;
+z = z/(2^15) * pi;
 plot(z)
 %% Unwrap
 % https://stackoverflow.com/questions/15634400/continous-angles-in-c-eq-unwrap-function-in-matlab
 for i = 2:N
-  dif = rem(z(i - 1) - z(i) + 2^15, 2* (2^15));
+  dif = rem(z(i - 1) - z(i) + pi, 2* pi);
   if (dif < 0)
-    dif = dif + 2 * 2^15;
+    dif = dif + 2 * pi;
   end
-  z(i) = dif - 2^15;
+  z(i) = dif - pi;
   z(i) = z(i - 1) - z(i);
 end
 
 %%
 z = csvread('../y_unwrapping.txt');
 z(:,2) = []; % Remove extra column
+z = z/(2^15) * pi;
 plot(z)
 %% Diff
 for k = 2:(numel(z))
@@ -78,4 +79,4 @@ ylabel('Hz')
 grid on
 title('Instantaneous Frequency')
 
-disp(mean(z(100:end-100))/(2^15)*pi)
+disp(mean(z(100:end-100)))
