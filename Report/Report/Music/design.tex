@@ -28,7 +28,7 @@ Input to the signal processing block is the discrete signal which was the output
 	\label{fig:DetailedDesign_postpro}
 \end{figure}
 
-The main function of the post processing block is to upsample the signal so it can be played send out by the DAC at a $fs=\SI{48000}{\hertz}$. The interpolation is an integer of 10, followed up by a lowpass filter. The DAC will send out the final signal which shoulde have a new frequency now compared to the input signal. 
+The main function of the post processing block is to upsample the signal so it can be played send out by the DAC at a $fs=\SI{48000}{\hertz}$. The interpolation is an integer of 10, followed up by a lowpass filter. The DAC will send out the final signal which shoulde have a new frequency now compared to the input signal. \fxnote{Move this to an appendix}
 
 \subsection{Quantization} 
 There will be a quantization error on the filters, but since the the filter isn't steep and have rather long time to get to the stop band. The filter doesn't suffer significantly from the quantization.  

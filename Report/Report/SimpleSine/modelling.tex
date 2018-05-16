@@ -19,4 +19,10 @@ If the new sampling frequency is higher than the old the phase at which the inpu
 \subsection{Post processing}
 If the input is lower than the output sampling frequency, the found phase is used to add a tail to the signal with the phase offset, to create an output signal of equal time as the input signal.
 
+\subsection{Possible improvements to Matlab model}
+\begin{itemize}
+	\item Run it on long signal in chunks equal to the ones used in the CC.
+	\item Window the input signal for more precise IF, and maybe smaller sample size?
+\end{itemize}
+
 \FloatBarrier
