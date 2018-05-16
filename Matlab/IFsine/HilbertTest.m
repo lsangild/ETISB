@@ -2,7 +2,7 @@
 Fs = 48000;
 y = csvread('x_signal521.txt');
 y(:,2) = []; % Remove extra column
-blocksize = 512;
+blocksize = 256;
 
 % Check if blocksize is valid
 assert(ismember(blocksize, [2^7, 2^8, 2^9, 2^10, 2^11]) && blocksize <= length(y));
@@ -31,4 +31,5 @@ for i = 0:(length(y)/blocksize - 1)
   
   pianoFreq = findPiano(freq(i + 1));
   [out((i * blocksize + 1):((i + 1) * blocksize)), phase] = genSine(blocksize, Fs, pianoFreq, phase, max(y_block));
+  plot(out);
 end
