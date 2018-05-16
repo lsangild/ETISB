@@ -1,8 +1,8 @@
 %% Load data in stead
 Fs = 48000;
-y = csvread('x_signal521.txt');
+y = csvread('x_signal245.txt');
 y(:,2) = []; % Remove extra column
-blocksize = 256;
+blocksize = 512;
 
 % Check if blocksize is valid
 assert(ismember(blocksize, [2^7, 2^8, 2^9, 2^10, 2^11]) && blocksize <= length(y));
@@ -31,5 +31,11 @@ for i = 0:(length(y)/blocksize - 1)
   
   pianoFreq = findPiano(freq(i + 1));
   [out((i * blocksize + 1):((i + 1) * blocksize)), phase] = genSine(blocksize, Fs, pianoFreq, phase, max(y_block));
-  plot(out);
+  disp(["Input frequency: ", num2str(freq(i + 1)), " Hz"])
+  z_new = getIF(out((i * blocksize + 1):((i + 1) * blocksize))', Fs, scale);
+  newFreq(i + 1) = (mean(z_new(floor(length(z_new)/3):end-ceil(length(z_new)/3)))/(scale))*pi;
+  disp(["New frequency: ", num2str(newFreq(i + 1)), " Hz"])
 end
+
+
+plot(out);

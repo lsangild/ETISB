@@ -23,19 +23,7 @@ function [y, newPhase] = genSine(len, Fs, freq, phase, amplitude)
   
   % Find new phase
   newPhase = asin(y_phase / max(abs(y_1)));
-  if y_phase > 0
-    if y_phase > y(end)
-      newPhase = newPhase;
-    else
+  if y_phase < y(end)
       newPhase = - newPhase + pi;
-    end
-  else
-    if y_phase > y(end)
-      newPhase = newPhase;
-    else
-      newPhase = - newPhase - pi;
-    end
   end
-  
-  disp(newPhase);
 end
