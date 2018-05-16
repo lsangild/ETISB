@@ -6,16 +6,18 @@ In this section an short introduction to how this project has used test from beg
 
 \begin{table}
 	\centering
-	\begin{tabular}{c c c}
+	\begin{tabular}{c | c c c c c | c}
 		\toprule
-		Test freq (Hz) & Matlab freq & CC freq \\
+		Test freq (Hz) & \multicolumn{4}{l}{Matlab freq (Hz)} & & CC freq (Hz) \\
 		\midrule
-		\num{245} & \num{243.2} & \num{237}\\
-		\num{350} & \num{351.2} & \num{349}\\
-		\num{470} & \num{470.0} & \num{470} \\
-		\num{521} & \num{519.6} & \num{525} \\
+		\num{245} & \num{245.13} & \num{244.93} & \num{244.85} & \num{245.03} && \num{237}\\
+		\num{350} & \num{349.90} & \num{349.94} & \num{349.88} & \num{349.96} && \num{349}\\
+		\num{470} & \num{470.00} & \num{470.00} & \num{470.00} & \num{470.00} && \num{470} \\
+		\num{521} & \num{521.22} & \num{521.18} & \num{521.10} & \num{521.04} && \num{525} \\
 		\bottomrule
 	\end{tabular}
+	\caption{Tested frequencies and the found results using blocks of length \num{512}. Matlab results are the average of 4 blocks of \num{512} on a signal of length \num{2048}, each block windowed with a hamming window.}
+	\label{tab:test}
 \end{table}
 
 \FloatBarrier
