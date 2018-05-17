@@ -30,17 +30,5 @@ Input to the signal processing block is the discrete signal which was the output
 
 The main function of the post processing block is to upsample the signal so it can be played send out by the DAC at a $fs=\SI{48000}{\hertz}$. The interpolation is an integer of 10, followed up by a lowpass filter. The DAC will send out the final signal which shoulde have a new frequency now compared to the input signal. \fxnote{Move this to an appendix}
 
-\subsection{Quantization} 
-There will be a quantization error on the filters, but since the the filter isn't steep and have rather long time to get to the stop band. The filter doesn't suffer significantly from the quantization.  
-\fxnote{Need plot of the two filters on top of each other to prove point.}
-
-In each filter there will occur coefficient and product quantization. Coefficient quantization will occur when the filter coefficients become 1.15 format. The product quantization will occur when the filter coefficients are multiplied with the data. This will result in quantization since it still has to fit 1.15 format. On \cref{fig:quant_error} can the places where there quantization finds place be seen. 
-\begin{figure}
-	\centering
-	\includegraphics[width=1\linewidth]{gfx/Design/flow_quant_error.pdf}
-	\caption{Quantization errors \systemName.}
-	\label{fig:quant_error}
-\end{figure}
-
 
 \FloatBarrier
