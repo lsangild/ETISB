@@ -3,8 +3,9 @@
 
 \section{Test}
 In this section an short introduction to how this project has used test from beginning to the end will be described.
-
+\subsection{Frequency determination resolution}
 \begin{table}
+	\fxnote{better description or table view, i dont get it atm.}
 	\centering
 	\begin{tabular}{c | c c c c c | c}
 		\toprule
@@ -19,5 +20,12 @@ In this section an short introduction to how this project has used test from beg
 	\caption{Tested frequencies and the found results using blocks of length \num{512}. Matlab results are the average of 4 blocks of \num{512} on a signal of length \num{2048}, each block windowed with a hamming window.}
 	\label{tab:test}
 \end{table}
+
+\subsection{Clock cycle usage}
+A question to be asked is, 'can the processing of the signal occur before the next set of 512 samples'. To find the answer for this, the clock cycles used of the FFT an the hilbert transform has been measured, and the amount of time of disposal has been calculated.\newline
+Time between sample blocks: $td = \frac{samples}{fs} = \frac{512}{48000} = 0.0107$. \newline
+Measurement of the clock cycles usage: 1898733 cycles. \newline
+The blackfin has a maximum speed at \SI{600}{\mega\hertz}. Which means it will take $\frac{1898733}{\SI{600}{\mega\hertz}} = 0.0032$ so the hilbert tranformation should not take more time than it has available.
+
 
 \FloatBarrier
