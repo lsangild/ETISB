@@ -28,7 +28,7 @@ for i = 0:(length(y)/blocksize - 1)
   t = 0:ts:(T - ts);
 
   % Apply window
-  %y_block = y_block .* h;
+  y_block = y_block .* h;
 
   %% Home made
   scale = 2^15;
