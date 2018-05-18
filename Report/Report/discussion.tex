@@ -3,3 +3,38 @@
 
 \chapter{Discussion}
 
+The original idea for this project was an auto tuner, which should help people with their singing, by changing the tones.
+The idea for this project originates from listening to todays big idols, both on the live stage and their studio recordings. 
+An impressive complex and optimized algorithm most have been made for auto tuning to work on live performances. 
+Therefore a big challenge as an auto tuner seemed like a brilliant idea. 
+The project started with making the requirements. 
+After making the requirements and a guidance section with the supervisor, it was clear that this was to ambitious. 
+Hence the project was scaled down to a pitch shifter, which firstly should be able to change the frequency of a pure sine as the incoming signal and later on, be able to handle the harmonics in a tone as well as changing frequency.
+
+The first method to change pure sine to another frequency was generally to change the sample frequency, fs. 
+But before changing the fs, the frequency of the input signal had to be found. 
+Since the frequency area that this project works around is as seen in \cref{tab:cmajor} very close to each other a high resolution of the fft was needed. 
+And to get a high frequency resolution a lot of samples is needed. 
+But this brings another predicament since with the high fs, the amount of samples will both fill the memory but also use a lot of calculation time. 
+Therefore decimation before making the fft, was decided this could give a high frequency resolution and doesn't fill the memory. 
+Both of these methods huge flaw is the time delay of approximately one second, and that is only the frequency determination that has been made at that point. 
+This method with decimation, fft and change of fs was manageable in Matlab, where the algorithm was written. 
+But at the implementation stage it was noticed that the fs, was not that simple to change to what ever was required and thus a new solution was needed. 
+
+The new method was the use of Hilbert transformation to find the frequency with a high frequency resolution and a short amount of processing time.
+A sinus generator from the $math.h$ library and a circular buffer to minimize the amounts of sine waves to compute.
+The brilliant and astonishing thing about the Hilbert transform, is the extremely high frequency resolution and minimal amount of samples needed.
+It can be done quick and only with 512 samples, and even less samples if the use of a window was implemented as shown in the \cref{sec:test}.
+The cons of the Hilbert transform i the fact that it can only find the precise frequency of a pure sine wave meaning, if there are more sine's mixed together it will find the average.
+This could probably be handled in some way, if a good description of the harmonics for an instrument as well as each tone is described in the code.
+Through the Hilbert transformation quantization errors also occurs, and result in a small deviation of the found frequency compared to the algorithm in Matlab. 
+After the Hilbert transformation, the sine wave generator is needed.
+It was only implemented in Matlab, hence the computational usage on the black fin is unknown.
+A problem with this is if a tone is the input signal, a generator for all the harmonics ar also needed, and could escalate to become very heavy on the computation.
+To avoid computing a new sine every time the idea of reusing the data in a circular buffer was made up. 
+Since most of this method hasn't been implemented on the black fin, it is still very unclear how the sound will be, the total time delay and how it will work when it is upgraded to handle harmonics as well.
+
+Through the hole process the synergy between algorithm writing in Matlab and afterwards implementation on the black fin has been arousing.
+The synergy has also been used efficiently to debug, to find the error in the implemented algorithm, by loading output files and see if they match the Matlab code.
+This method was very efficient since it was very clear to find the exact place something went wrong, and handle it and in the end a outcome where the frequency could be found.   
+

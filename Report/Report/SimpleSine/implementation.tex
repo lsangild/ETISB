@@ -15,7 +15,7 @@ int                    scale_method);
 \end{minted}
 After the FFT, the hilbert() will use the ftt signal. In hilbert() the fft signal will first be rearranged into the array $zHilbert[N\_FFT]$. The first value and the $N\_FFT/2$ value will be waited less and therefore are multiplied with $0.5$ using the optimized function $cmlt\_fr16(a,b)$. From $N\_FFT/2$ and beyond everything is set to zero. 
 After rearranging the inverse FFT of zHilbert is made and placed in $m\_ifft\_output$. The inverse FFT is also made using the build in functions.
-\begin{minted}{python}
+\begin{minted}[linenos, breaklines, bgcolor=lightgray]{c}
 void DynamicFilter::hilbert(){
 	// parameters
 	int block_exponent;
@@ -42,7 +42,7 @@ void DynamicFilter::hilbert(){
 	////// instant frequency finding //////
 	//first finding the phase
 	for (int i = 0; i<N_FFT; i++){
-		instafreq[i] = atan2_fr16(m_ifft_output[i].im,m_ifft_output[i].re);
+		instafreq[i] = atan2_fr16(m_ifft_output[i].im, m_ifft_output[i].re);
 	}
 	
 	// unwrapping with threshold 2PI
