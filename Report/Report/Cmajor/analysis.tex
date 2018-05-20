@@ -16,8 +16,27 @@ The approach again focuses on the steps
 \paragraph{Finding the input tone}
 In the sine part, the frequency was found using Instantaneous Frequency.
 This approach may still be valid, but would require the ratio between the fundamental and every harmonic frequency to be exactly the same each time.
-Should the ratios for the fundamental and the first to harmonics be e.g. 3, 2 and 1, the output of the Instantaneous Frequency would be as shown in table \fxnote{Create table for a few notes}.
+Should the ratios for the fundamental and the first to harmonics be e.g. 3, 2 and 1, the output of the Instantaneous Frequency would be as shown in \cref{tab:CmajorIF}.
 
-Another approach could be to use fft to determine the tallest peak, leading to a not very accurate measurement, approximately \SI{\pm50}{\hertz}, bandpass filter this frequency bin, removing everything else, and the calculate the Instantaneous Frequency.\fxnote{Lav figure}
+\begin{table}
+	\centering
+	\begin{tabular}{l c}
+		\toprule
+		Note & IF \\
+		\midrule
+		C$_4$ & \num{436.043} \\
+		D$_4$ & \num{489.442} \\
+		E$_4$ & \num{549.380} \\
+		F$_4$ & \num{582.047} \\
+		G$_4$ & \num{653.325} \\
+		A$_4$ & \num{733.333} \\
+		B$_4$ & \num{823.138} \\
+		\bottomrule
+	\end{tabular}
+	\caption{IF values if including the first two harmonic frequencies.}
+	\label{tab:CmajorIF}
+\end{table}
+
+Another approach could be to use FFT to determine the tallest peak, leading to a not very accurate measurement, approximately \SI{\pm50}{\hertz}, bandpass filter this frequency bin, removing everything else, and the calculate the Instantaneous Frequency.
 The found frequency can then be compared to a table of the C-major frequencies and their harmonics, allowing the tone to be determined.
 Then the new pitch shifted tone can be created with a number of harmonics.
