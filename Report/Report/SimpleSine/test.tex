@@ -46,15 +46,17 @@ Secondly the size and speed had same prioritization in the optimization settings
 And lastly where the speed was the focus. The result can be seen on
 \begin{table}
 	\centering
-	\caption{The cycle usage with different settings for the optimization function in the cross core environment}
+	\begin{tabularx}{0.8\textwidth}{l c c c}
+		\toprule
+		{\textbf{Optimized for:}} & \textbf{Size} & \textbf{50\% Size 50\% Speed} & \textbf{Speed} \\
+		\midrule
+		\textbf{Hilbert transform} & \num{3582} & \num{3577} & \num{3554} \\
+		\textbf{Sine generator} & \num{115} & \num{115} & \num{115} \\
+		\textbf{Total} & \num{3697} & \num{3692} & \num{3669} \\
+		\bottomrule
+	\end{tabularx}
+	\caption{The cycle usage with different settings for the optimization function in the cross core environment. Every value is shown in $\frac{\text{cycles}}{\text{sample}}$.}
 	\label{OptimizedCycleUsage}
-	\begin{tabular}{l|l|l|l}
-		\hline
-		{\textbf{Cycle usage pr.sample for:}} & \textbf{Size} & \textbf{50\% Size 50\% Speed} & \textbf{Speed} \\ \hline
-		\textbf{Hilbert transform}                &  $\frac{1833887 cycles}{512 samples} = 3582 \frac{cycles}{sample} $           &    $\frac{1831492 cycles}{512 samples} = 3577 \frac{cycles}{sample}$                            &   $\frac{181819687 cycles}{512 samples} = 3554 \frac{cycles}{sample}$             \\ \hline
-		\textbf{Sine generator}                   &       $\frac{21085 cycles}{183 samples} = 115 \frac{cycles}{sample}$        &    $\frac{21084 cycles}{183 samples} = 115 \frac{cycles}{sample}$                           &    $\frac{21082 cycles}{183 samples} = 115 \frac{cycles}{sample}$ 	\\ \hline 
-		\textbf{Total}    & 	$3697 \frac{cycles}{sample}$	 & 	$3692 \frac{cycles}{sample}$	&	 $3669 \frac{cycles}{sample}$	\\ \hline 
-	\end{tabular}
 \end{table}
 
 So if the code is optimized with regards to speed, the amount of cycles used becomes less, but a neglect able amount.  
