@@ -24,10 +24,15 @@ In this section an short introduction to how this project has used test from beg
 
 \subsection{Clock cycle usage}
 A question to be asked is, 'can the processing of the signal occur before the next set of 512 samples'. To find the answer for this, the clock cycles used of the FFT an the hilbert transform has been measured, and the amount of time of disposal has been calculated.\newline
-Time between sample blocks: $td = \frac{samples}{fs} = \frac{512}{\SI{48}{\kilo\hertz}} = \SI{10.7}{\milli\second}$. \newline
-Measurement of the clock cycles usage: \num{1898733} cycles. \newline
-The blackfin has a maximum speed at \SI{600}{\mega\hertz}. Which means it will take $\frac{\num{1898733}}{\SI{600}{\mega\hertz}} = {\SI{3.28}{\milli\second}}$ so the hilbert tranformation should not take more time than it has at its disposal.
+Time between sample blocks: 
 
-\fxnote{245Hz, fs=48kHz = 183 samples pr. periode}
+$td = \frac{samples}{fs} = \frac{512}{\SI{48}{\kilo\hertz}} = \SI{10.7}{\milli\second}$. \newline
+Measurement of the clock cycles usage: 
+
+\num{1898733} cycles. \newline
+The blackfin has a maximum speed at \SI{600}{\mega\hertz}. Which means it will take $\frac{\num{1898733}}{\SI{600}{\mega\hertz}} = {\SI{3.28}{\milli\second}}$ so the Hilbert transformation should not take more time than it has at its disposal.
+
+
+\fxnote{245Hz, fs=48kHz = 183 samples pr. periode, uden optimering resultat 26225/183 = 143.3.. med 100 optimering(speed) 21082/183 = 115,2... hilbert: 1819687/512 = 3554... med optimering 50(speed/size): same for sinegenerator 21084, hilbert = 1831492/512 = 3577.... optimering0(size): sinegen 21085.. hilbert = 1833887/512 = 3582 }
 
 \FloatBarrier
