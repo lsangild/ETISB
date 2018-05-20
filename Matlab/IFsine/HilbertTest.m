@@ -49,22 +49,24 @@ for i = 0:(length(y)/blocksize - 1)
   disp([num2str(freq(i + 1)), "\t", num2str(pianoFreq), "\t", num2str(newFreq(i + 1))])
   
   % Plotting the IF of the different blocks
-  plot([i*blocksize + 1:((i+1)*blocksize - 1)],z_new);
+  plot([i*blocksize + 1:((i+1)*blocksize - 1)].*(1/Fs),z.*(pi/(2^15)));
 end
-xlim([0,2048])
-ylim([0, 1e7])
+xlim([0,2048/Fs])
+ylim([450, 500])
 grid on
-xlabel('Samples')
-ylabel('Amplitude')
+xlabel('Time (s)')
+ylabel('Instantaneous Frequency (Hz)')
 
+out = out * (2^-15);
+t = [1:2048] .* (1/Fs);
 % Plot output
 figure
-plot(1:512, out(1:512), '.');
+plot(t(1:512), out(1:512), '.');
 hold on
-plot(513:1024, out(513:1024), '.');
-plot(1025:1536, out(1025:1536), '.');
-plot(1537:2048, out(1537:2048), '.');
-xlim([0,2048])
+plot(t(513:1024), out(513:1024), '.');
+plot(t(1025:1536), out(1025:1536), '.');
+plot(t(1537:2048), out(1537:2048), '.');
+xlim([0,t(end)])
 grid on
-xlabel('Samples')
+xlabel('Time (s)')
 ylabel('Amplitude')
