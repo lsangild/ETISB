@@ -1,6 +1,6 @@
 %% Load data in stead
 Fs = 48000;
-y = csvread('x_signal470.txt');
+y = csvread('x_signal245.txt');
 y(:,2) = []; % Remove extra column
 blocksize = 512;
 

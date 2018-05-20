@@ -43,6 +43,7 @@ Finding the frequency is done in five steps, the output of some plotted in \cref
 
 The IF and phase is used to create a new sine.
 This is done for each new block as shown in \cref{fig:IFoutput}.
+In the model each point is created using a call to \mintinline{matlab}{sin()}, this is due to the fact that the lowest frequency, \SI{261.626}{\hertz} will need only ($\frac{\SI{48000}{Hz}}{\SI{261.626}{\hertz}}=$)\num{183} points without using interpolation, which does not seem excessive, and should be tried to make the Blackfin implementation simpler.
 
 \begin{figure}
 	\centering
