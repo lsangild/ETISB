@@ -10,17 +10,16 @@ function z = getIF(y, Fs, scale)
   N = length(y);
   y=fft(y);
   % Division by 2, in stead of multiplication to keep everything below 1 on crosscore
-  y=[y(1,:)/2;
-     y(2:N/2,:);
-     y(N/2+1,:)./2;
+  y=[y(1, :)/2;
+     y(2:N/2, :);
+     y(N/2+1, :)./2;
      zeros(N/2-1, 1)];
   z=ifft(y);
 
   %% Angle
-  z = atan2(imag(z),real(z));
+  z = atan2(imag(z), real(z));
 
   %% Unwrap
-  % https://stackoverflow.com/questions/15634400/continous-angles-in-c-eq-unwrap-function-in-matlab
   % Scale to fit CC
   z = (z/pi)*scale;
 
@@ -42,5 +41,5 @@ function z = getIF(y, Fs, scale)
   % Remove last diff
   z(end) = [];
 
-  z = Fs/(2*pi)*z;
+  z = Fs / (2 * pi) * z;
 end

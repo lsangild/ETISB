@@ -1,6 +1,6 @@
 %% Load data in stead
 Fs = 48000;
-y = csvread('x_signal245.txt');
+y = csvread('x_signal470.txt');
 y(:,2) = []; % Remove extra column
 blocksize = 512;
 
@@ -35,7 +35,7 @@ for i = 0:(length(y)/blocksize - 1)
   z = getIF(y_block, Fs, scale);
   
   % Find frequency
-  freq(i + 1) = (mean(z(floor(length(z)/3):end-ceil(length(z)/3)))/(scale))*pi;
+  freq(i + 1) = (mean(z(floor(length(z)/3) : end-ceil(length(z)/3)))/(scale))*pi;
   
   % Find nearest C-major frequency and create signal
   pianoFreq = findPiano(freq(i + 1));
@@ -43,7 +43,7 @@ for i = 0:(length(y)/blocksize - 1)
 
   % Check the frequency of the new signal
   z_new = getIF(out((i * blocksize + 1):((i + 1) * blocksize))', Fs, scale);
-  newFreq(i + 1) = (mean(z_new(floor(length(z_new)/3):end-ceil(length(z_new)/3)))/(scale))*pi;
+  newFreq(i + 1) = (mean(z_new(floor(length(z_new)/3) : end-ceil(length(z_new)/3)))/(scale))*pi;
 
   % Print the result
   disp([num2str(freq(i + 1)), "\t", num2str(pianoFreq), "\t", num2str(newFreq(i + 1))])
@@ -51,7 +51,20 @@ for i = 0:(length(y)/blocksize - 1)
   % Plotting the IF of the different blocks
   plot([i*blocksize + 1:((i+1)*blocksize - 1)],z_new);
 end
+xlim([0,2048])
+ylim([0, 1e7])
+grid on
+xlabel('Samples')
+ylabel('Amplitude')
 
 % Plot output
 figure
-plot(out);
+plot(1:512, out(1:512), '.');
+hold on
+plot(513:1024, out(513:1024), '.');
+plot(1025:1536, out(1025:1536), '.');
+plot(1537:2048, out(1537:2048), '.');
+xlim([0,2048])
+grid on
+xlabel('Samples')
+ylabel('Amplitude')
