@@ -5,6 +5,7 @@
 
 The original idea for this project was an auto tuner, which should help people with their singing, by changing the tones.
 The idea for this project originates from listening to todays big idols, both on the live stage and their studio recordings. 
+
 An impressive complex and optimized algorithm most have been made for auto tuning to work on live performances. 
 Therefore a big challenge as an auto tuner seemed like a brilliant idea. 
 The project started with making the requirements. 
@@ -25,12 +26,12 @@ The new method was the use of Hilbert transformation to find the frequency with 
 A sinus generator from the $math.h$ library and a circular buffer to minimize the amounts of sine waves to compute.
 The brilliant and astonishing thing about the Hilbert transform, is the extremely high frequency resolution and minimal amount of samples needed.
 It can be done quick and only with 512 samples, and even less samples if the use of a window was implemented as shown in the \cref{sec:test}.
-The cons of the Hilbert transform i the fact that it can only find the precise frequency of a pure sine wave meaning, if there are more sine's mixed together it will find the average.
+The cons of the Hilbert transform is the fact that it can only find the precise frequency of a pure sine wave meaning, if there are more sine's mixed together it will find the average.
 This could probably be handled in some way, if a good description of the harmonics for an instrument as well as each tone is described in the code.
 Through the Hilbert transformation quantization errors also occurs, and result in a small deviation of the found frequency compared to the algorithm in Matlab. 
 After the Hilbert transformation, the sine wave generator is needed.
-It was only implemented in Matlab, hence the computational usage on the black fin is unknown.
-A problem with this is if a tone is the input signal, a generator for all the harmonics ar also needed, and could escalate to become very heavy on the computation.
+It was implemented in Matlab and a version on the black fin to measure the cycles usage.  
+A problem with the sine generator is, if a tone is the input signal, a generator for all the harmonics are also needed, and could escalate to become very heavy on the computation or memory.
 To avoid computing a new sine every time the idea of reusing the data in a circular buffer was made up. 
 Since most of this method hasn't been implemented on the black fin, it is still very unclear how the sound will be, the total time delay and how it will work when it is upgraded to handle harmonics as well.
 
