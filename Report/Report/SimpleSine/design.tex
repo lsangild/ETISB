@@ -46,11 +46,11 @@ The found max frequency, maxFreq will be passed on to the signal processing bloc
 	\label{fig:DetailedSigPro}
 \end{figure}
 
-The maxFreq will be passed in to a Sinus generator, where it will be determined which frequency to go to on the \cref{tab:cmajor}.
+The maxFreq will be passed on to a Sinus generator, where it will be determined which frequency to go to on \cref{tab:cmajor}.
 A sine wave with the found frequency will then be made with as few points as possible.
-The generated sine wave, y(n), will be interpolated to get the correct amount of values in the sine wave, this method has been chosen with the thought that generating a sine wave with many points is more costly then interpolating.
+The generated sine wave, y(n), will be interpolated so the signal gets a lot of values in the sine wave, this method has been chosen with the thought that generating a sine wave with many points is more costly then interpolating.
 The new full sine wave will be passed on to a circular buffer.
-The idea behind the circular buffer is to avoid calculation of the same sine wave multiple times.
+The idea behind the circular buffer is to avoid calculating the same sine wave again and again.
 If the maxFreq appears to be the same multiple times, the sine wave in the circular buffer can be reused thus we do not have to generate or interpolate a new sine.
 The output from the circular buffer will be the new complete discrete signal.
 

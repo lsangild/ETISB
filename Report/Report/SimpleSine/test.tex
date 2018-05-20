@@ -23,19 +23,40 @@ In this section an short introduction to how this project has used test from beg
 \end{table}
 
 \subsection{Clock cycle usage}
-A question to be asked is "Can the processing of the signal occur before the next set of 512 samples?".
-To find the answer to this question, the clock cycles used of the FFT an the hilbert transform has been measured, and the amount of time of disposal has been calculated.
+A question to be asked is, "Can the processing of the signal occur before the next set of 512 samples?".
+To find the answer for this, the clock cycles used of the FFT an the hilbert transform has been measured, and the amount of time at disposal has been calculated.
 
-Time between sample blocks: 
-$td = \frac{samples}{fs} = \frac{512}{\SI{48}{\kilo\hertz}} = \SI{10.7}{\milli\second}$.
+Time between sample blocks:
+$td = \frac{samples}{fs} = \frac{512}{\SI{48}{\kilo\hertz}} = \SI{10.7}{\milli\second}$
 
-Measurement of the clock cycles usage: 
-\num{1898733} cycles.
+Measurement of the clock cycles usage:
+$\frac{1898733 cycles}{512 samples} = 3708 \frac{cyles}{sample}$.
+Which is less then specified in the requirements.
 
-The Blackfin has a maximum clock speed of \SI{600}{\mega\hertz}.
-Which means it will take $\frac{\num{1898733}}{\SI{600}{\mega\hertz}} = {\SI{3.28}{\milli\second}}$ so the Hilbert transformation should not take more time than it has at its disposal.\fxnote{Needs better explanation}
+The Blackfin has a maximum speed at \SI{600}{\mega\hertz}.
+Which means it will take $\frac{\num{1898733}}{\SI{600}{\mega\hertz}} = {\SI{3.28}{\milli\second}}$ so the Hilbert transformation should not take more time than it has at its disposal.\fxnote{Better explanation needed}
 
+To generate 183 samples, with the sine generator it takes: $\frac{26225 cycles}{183 samples} = 143.3\frac{cycles}{sample}$. 
 
-\fxnote{245Hz, fs=48kHz = 183 samples pr. periode, uden optimering resultat 26225/183 = 143.3.. med 100 optimering(speed) 21082/183 = 115,2... hilbert: 1819687/512 = 3554... med optimering 50(speed/size): same for sinegenerator 21084, hilbert = 1831492/512 = 3577.... optimering0(size): sinegen 21085.. hilbert = 1833887/512 = 3582 }
+\subsubsection{Optimized clock cycle usage}
+In the cross core environment it is possible to optimize the code with regards to size or speed.
+This was done with three different settings for the optimization. 
+Firstly where the size was the main focus of the optimization. 
+Secondly the size and speed had same prioritization in the optimization settings.
+And lastly where the speed was the focus. The result can be seen on
+\begin{table}
+	\centering
+	\caption{The cycle usage with different settings for the optimization function in the cross core environment}
+	\label{OptimizedCycleUsage}
+	\begin{tabular}{l|l|l|l}
+		\hline
+		{\textbf{Cycle usage pr.sample for:}} & \textbf{Size} & \textbf{50\% Size 50\% Speed} & \textbf{Speed} \\ \hline
+		\textbf{Hilbert transform}                &  $\frac{1833887 cycles}{512 samples} = 3582 \frac{cycles}{sample} $           &    $\frac{1831492 cycles}{512 samples} = 3577 \frac{cycles}{sample}$                            &   $\frac{181819687 cycles}{512 samples} = 3554 \frac{cycles}{sample}$             \\ \hline
+		\textbf{Sine generator}                   &       $\frac{21085 cycles}{183 samples} = 115 \frac{cycles}{sample}$        &    $\frac{21084 cycles}{183 samples} = 115 \frac{cycles}{sample}$                           &    $\frac{21082 cycles}{183 samples} = 115 \frac{cycles}{sample}$ 	\\ \hline 
+		\textbf{Total}    & 	$3697 \frac{cycles}{sample}$	 & 	$3692 \frac{cycles}{sample}$	&	 $3669 \frac{cycles}{sample}$	\\ \hline 
+	\end{tabular}
+\end{table}
+
+So if the code is optimized with regards to speed, the amount of cycles used becomes less, but a neglect able amount.  
 
 \FloatBarrier
