@@ -24,9 +24,9 @@ In this section an short introduction to how this project has used test from beg
 
 \subsection{Clock cycle usage}
 A question to be asked is, 'can the processing of the signal occur before the next set of 512 samples'. To find the answer for this, the clock cycles used of the FFT an the hilbert transform has been measured, and the amount of time of disposal has been calculated.\newline
-Time between sample blocks: $td = \frac{samples}{fs} = \frac{512}{\SI{48}{\kilo\hertz}} = \SI{107}{\milli\second}$. \newline
+Time between sample blocks: $td = \frac{samples}{fs} = \frac{512}{\SI{48}{\kilo\hertz}} = \SI{10.7}{\milli\second}$. \newline
 Measurement of the clock cycles usage: \num{1898733} cycles. \newline
-The blackfin has a maximum speed at \SI{600}{\mega\hertz}. Which means it will take $\frac{\num{1898733}}{\SI{600}{\mega\hertz}} = {\SI{32}{\milli\second}}$ so the hilbert tranformation should not take more time than it has at its disposal.
+The blackfin has a maximum speed at \SI{600}{\mega\hertz}. Which means it will take $\frac{\num{1898733}}{\SI{600}{\mega\hertz}} = {\SI{3.28}{\milli\second}}$ so the hilbert tranformation should not take more time than it has at its disposal.
 
 \fxnote{245Hz, fs=48kHz = 183 samples pr. periode}
 
