@@ -28,7 +28,7 @@ if (dec < 0)
     tmpInt = uint16(tmp); % Unsigned 16 bits
     hexNum = bitcmp(tmpInt-1); % Two's complement
 else
-    hexNum = round(dec*2^m);
+    hexNum = round((dec)*2^m);
 end
     
 % add "0x" to hex-number
