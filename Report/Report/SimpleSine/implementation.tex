@@ -3,27 +3,10 @@
 
 \section{Implementation}
 \label{sec:impl}
-<<<<<<< HEAD
-The implementation has been done in the framework made by our supervisor Kim Bjerge. The complete idea of the system has not been implemented on the blackfin. What has been implemented on the blackfin is the Hilbert transformation, which determines the main frequency in the signal and a version of the sine generator for test purpose. 
-To the framework has been added a function called hilbert() and can be seen below and a function called sineGenerator(). Before the hilbert() is called the FFT of the signal will be made using the function 
-\begin{minted}{python}
-void rfft_fr16(const fract16          input[],
-complex_fract16        output[],
-const complex_fract16  twiddle_table[],
-int                    twiddle_stride,
-int                    fft_size,
-int                   *block_exponent,
-int                    scale_method);
-\end{minted}
-After the FFT, the hilbert() will use the ftt signal. In hilbert() the fft signal will first be rearranged into the array $zHilbert[N\_FFT]$. The first value and the $N\_FFT/2$ value will be waited less and therefore are multiplied with $0.5$ using the optimized function $cmlt\_fr16(a,b)$. 
-
-From $N\_FFT/2$ and beyond everything is set to zero. 
-After rearranging the inverse FFT of zHilbert, is made and placed in $m\_ifft\_output$. The inverse FFT is also made using the build in functions.
-=======
 The implementation has been done in the framework made by our supervisor Kim Bjerge.
 The complete idea of the system has not been implemented on the Blackfin.
 What has been implemented on the blackfin is the Instantaneous Frequency algorithm, which determines the main frequency in the signal.
-So to the framework has been added a function called \mintinline{c}{hilbert()} as can be seen below.
+To the framework has been added a function called \mintinline{c}{hilbert()} as can be seen below and and a function called \mintinline{c}{sineGenerator()}.
 Before the \mintinline{c}{hilbert()} is called the FFT of the signal will be made using the function 
 
 \begin{minted}[breaklines]{c}
@@ -35,7 +18,7 @@ The first value and the $N\_FFT/2$ value will be waited less and therefore are m
 From $N\_FFT/2$ and beyond everything is set to zero. 
 After rearranging the inverse FFT of zHilbert is made and placed in $m\_ifft\_output$.
 The inverse FFT is also made using the build in functions.
->>>>>>> 3d65454185d12f3f24e767967ff47c2408762c7b
+
 \begin{minted}[linenos, breaklines, bgcolor=lightgray]{c}
 void DynamicFilter::hilbert(){
 	// parameters
@@ -90,21 +73,14 @@ void DynamicFilter::hilbert(){
 		
 }
 \end{minted}
-<<<<<<< HEAD
-Now the instant frequency finding starts. First the argument of every value of the IFFT signal is found using $atan2\_fr16$. Afterwards the remainder is found after the subtraction of two arguments. lastly the difference is found and then a mean of the middle values are used to find the meanFreq.
-
-\subsection{Optimized functions}
-In the implementation has some of the build in function been used, these functions are optimized and should use as few clock cycles as possible to execute their task. On \cref{tab:optimized_func}  some of the different build-in functions which are used can be seen.
-=======
-
 Now the Instantaneous Frequency finding starts. First the argument of every value of the IFFT signal is found using \mintinline{c}{atan2}.
 Afterwards the remainder is found after the subtraction of two arguments.
 Lastly the difference is found and then a mean of the middle values are used to find the meanFreq.
 
 \subsection{Optimized functions}
-In the implementation some of the build in functions have been used, these functions are optimized and should use as few clock cycles as possible to execute. The functions can be seen in \cref{tab:optimized_func}.
+In the implementation some of the build in functions have been used, these functions are optimized and should use as few clock cycles as possible to execute.
+On \cref{tab:optimized_func}  some of the different build-in functions which are used can be seen.
 
->>>>>>> 3d65454185d12f3f24e767967ff47c2408762c7b
 \begin{table}
 	\centering
 	\begin{tabularx}{\textwidth}{X X}
