@@ -10,14 +10,14 @@
 	\label{fig:overalldesign}
 \end{figure}
 
-To fulfil the requirements specified, the system is split into three parts: Preprocessing, Signal processing and Post processing, as seen in \cref{fig:overalldesign}.
+To fulfil the requirements specified, the system is split into three parts: Preprocessing, Signal processing and Post-processing, as seen in \cref{fig:overalldesign}.
 
 \paragraph{Preprocessing} handles the analog to digital conversion and preprocessing allowing compliance with Non-functional requirement R1 and R2 for the Signal processing block.
 This means Preprocessing takes the input, processes it and outputs a discrete signal which can be processed and modulated.
 
 \paragraph{Signal processing} finds the frequency/tone based on the frequency found it shall be moved to the nearest corresponding C-major tone, shown in \cref{tab:cmajor}.
 
-\paragraph{Post processing} handles the digital to analog conversion.
+\paragraph{Post-processing} handles the digital to analog conversion.
 
 \subsection{Detailed description of the design parts}
 \subsubsection{Preprocessing}
