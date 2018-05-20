@@ -2,20 +2,22 @@
 % !TEX spellcheck = en_GB
 
 \section{Analysis}
-\fxnote{Superficial diagram. No thoughts on implementation. Focus on communication between the diagram blocks, and what the superficial blocks are meant to achieve.}
+In contrast to the pure sine, the C-major consists of several frequencies, as shown in \fxnote{Figure \url{https://people.ece.cornell.edu/land/courses/ece4760/FinalProjects/f2014/org5/website/website/index.html}}.
+These frequencies are evenly spaced, and the solutions presented in \cref{sec:simpleanal} are still valid to use.
+Here the solution of changing the sampling frequency is still not valid due to limitations on the Blackfin, and the primary target of the analysis is if it is possible to use the same approach as in the pure sine implementation: Creating a new tone at the target frequency.
 
-To fulfil the requirements specified, the system is split into three parts: Preprocessing, Signal processing and Post processing, as seen in \cref{fig:overalldesign}.
+The approach again focuses on the steps
+\begin{enumerate}
+	\item Find the input tone.
+	\item Create new tone at target frequency.
+	\item Play output tone.
+\end{enumerate}
 
-\paragraph{Preprocessing} handles the analog to digital conversion and preprocessing allowing compliance with Non-functional requirement R1 and R2 for the Signal processing block.
-This means Preprocessing takes the input, processes it and outputs a sample frequency and buffer size whose ratio allows for frequency bins smaller than \SI{2.5}{\hertz}.
+\paragraph{Finding the input tone}
+In the sine part, the frequency was found using Instantaneous Frequency.
+This approach may still be valid, but would require the ratio between the fundamental and every harmonic frequency to be exactly the same each time.
+Should the ratios for the fundamental and the first to harmonics be e.g. 3, 2 and 1, the output of the Instantaneous Frequency would be as shown in table \fxnote{Create table for a few notes}.
 
-\paragraph{Signal processing} finds the frequency/tone to move and moves it to the corresponding C-major tone.
-
-\paragraph{Post processing} ensures the sound quality is maintained after Preprocessing and Signal processing.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\linewidth]{gfx/Design/OverallDesign.pdf}
-	\caption{Overall design of \systemName.}
-	\label{fig:overalldesign}
-\end{figure}
+Another approach could be to use fft to determine the tallest peak, leading to a not very accurate measurement, approximately \SI{\pm50}{\hertz}, bandpass filter this frequency bin, removing everything else, and the calculate the Instantaneous Frequency.\fxnote{Lav figure}
+The found frequency can then be compared to a table of the C-major frequencies and their harmonics, allowing the tone to be determined.
+Then the new pitch shifted tone can be created with a number of harmonics.
