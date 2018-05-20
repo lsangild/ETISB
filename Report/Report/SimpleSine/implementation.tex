@@ -3,18 +3,21 @@
 
 \section{Implementation}
 \label{sec:impl}
-The implementation has been done in the framework made by our supervisor Kim Bjerge. The complete idea of the system has not been implemented on the blackfin. What has been implemented on the blackfin is the Hilbert transformation, which determines the main frequency in the signal. So to the framework has been added a function called hilbert() and can be seen below. Before the hilbert() is called the FFT of the signal will be made using the function 
-\begin{minted}{python}
-void rfft_fr16(const fract16          input[],
-complex_fract16        output[],
-const complex_fract16  twiddle_table[],
-int                    twiddle_stride,
-int                    fft_size,
-int                   *block_exponent,
-int                    scale_method);
+The implementation has been done in the framework made by our supervisor Kim Bjerge.
+The complete idea of the system has not been implemented on the Blackfin.
+What has been implemented on the blackfin is the Instantaneous Frequency algorithm, which determines the main frequency in the signal.
+So to the framework has been added a function called \mintinline{c}{hilbert()} as can be seen below.
+Before the \mintinline{c}{hilbert()} is called the FFT of the signal will be made using the function 
+
+\begin{minted}[breaklines]{c}
+void rfft_fr16(const fract16 input[], complex_fract16 output[], const complex_fract16 twiddle_table[], int twiddle_stride, int fft_size, int *block_exponent, int scale_method);
 \end{minted}
-After the FFT, the hilbert() will use the ftt signal. In hilbert() the fft signal will first be rearranged into the array $zHilbert[N\_FFT]$. The first value and the $N\_FFT/2$ value will be waited less and therefore are multiplied with $0.5$ using the optimized function $cmlt\_fr16(a,b)$. From $N\_FFT/2$ and beyond everything is set to zero. 
-After rearranging the inverse FFT of zHilbert is made and placed in $m\_ifft\_output$. The inverse FFT is also made using the build in functions.
+
+After the FFT, the \mintinline{c}{hilbert()} will use the FFT signal. In \mintinline{c}{hilbert()} the FFT signal will first be rearranged into the array $zHilbert[N\_FFT]$.
+The first value and the $N\_FFT/2$ value will be waited less and therefore are multiplied with $0.5$ using the optimized function $cmlt\_fr16(a,b)$.
+From $N\_FFT/2$ and beyond everything is set to zero. 
+After rearranging the inverse FFT of zHilbert is made and placed in $m\_ifft\_output$.
+The inverse FFT is also made using the build in functions.
 \begin{minted}[linenos, breaklines, bgcolor=lightgray]{c}
 void DynamicFilter::hilbert(){
 	// parameters
@@ -30,11 +33,11 @@ void DynamicFilter::hilbert(){
 	// Hilbert transform
 	zHilbert[0] = cmlt_fr16(m_fft_output[0], scale);
 	
-	for (int i = 1; i<N_FFT/2; i++){
+	for (int i = 1; i < N_FFT/2; i++){
 		zHilbert[i] = m_fft_output[i];
 	}
 		
-	zHilbert[N_FFT/2] = cmlt_fr16(m_fft_output[N_FFT/2], scale);
+	zHilbert[N_FFT / 2] = cmlt_fr16(m_fft_output[N_FFT / 2], scale);
 	
 	// ifft of the hilbert signal
 	ifft_fr16(zHilbert, m_ifft_output, m_twiddle_table, 1, N_FFT, &block_exponent, 1);
@@ -52,44 +55,51 @@ void DynamicFilter::hilbert(){
 		
 		temp32[i] = ((int32_t)(dif - (1 << 15)));
 			
-		temp32[i] = sub_fr1x32(temp32[i-1],	temp32[i]); // optimering
+		temp32[i] = sub_fr1x32(temp32[i-1],	temp32[i]); // optimization
 	}
 		
 	// find the diff
 	for(int i = 1; i<N_FFT;i++){
-		temp32[i-1] = (sub_fr1x32(temp32[i],temp32[i-1])) * fs/(2*PI_FLOAT); //optimering
+		temp32[i-1] = (sub_fr1x32(temp32[i],temp32[i-1])) * fs / (2 * PI_FLOAT); // optimization
 	}
 		
 	//finding the mean and therefore the value
-	for(int i = 100; i<N_FFT-99;i++){
+	for(int i = 100; i < N_FFT-99; i++){
 		temp += temp32[i];
 	}
 		
-	meanFreq = ((temp/(N_FFT-200)) * PI_FLOAT) / (1<<15);
+	meanFreq = ((temp / (N_FFT-200)) * PI_FLOAT) / (1 << 15);
 		
 }
 \end{minted}
-Now the instant frequency finding starts. First the argument of every value of the IFFT signal is found using atan2. Afterwards the remainder is found after the subtraction of two arguments. lastly the difference is found and then a mean of the middle values are used to find the meanFreq.
+
+Now the Instantaneous Frequency finding starts. First the argument of every value of the IFFT signal is found using \mintinline{c}{atan2}.
+Afterwards the remainder is found after the subtraction of two arguments.
+Lastly the difference is found and then a mean of the middle values are used to find the meanFreq.
 
 \subsection{Optimized functions}
-In the implementation has some of the build in function been used, these functions are optimized and should use as few clock cycles as possible to execute. On \cref{tab:optimized_func}.
+In the implementation some of the build in functions have been used, these functions are optimized and should use as few clock cycles as possible to execute. The functions can be seen in \cref{tab:optimized_func}.
+
 \begin{table}
 	\centering
-	\begin{tabular}{l l}
+	\begin{tabularx}{\textwidth}{X X}
 		\toprule
-		function name & what it does\\
+		\textbf{Function name} & \textbf{Description }\\
 		\midrule
-		\begin{tabular}[c]{@{}l@{}}$rfft\_fr16(input, output, twiddle\_table, twiddle\_stride,$\\ $fft\_size, *block\_exponent, scale\_method)$\end{tabular}& makes the FFT of an input signal\\
-		\begin{tabular}[c]{@{}l@{}}$ifft\_fr16(input, output, twiddle\_table, twiddle\_stride,$\\ $fft\_size, *block\_exponent, scale\_method)$\end{tabular}& makes the inverse FFT of an input signal\\
-		$cmlt\_fr16(a,b)$& Multiply two complex fract16\\
-		$sub\_fr1x32(a,b)$& subtract two complex fract32\\
-		$atan2\_fr16(imaginary\_part,real\_part)$& findes the argument of a complex fract16 \\
+		\mintinline[breaklines]{c}{rfft_fr16(input, output, twiddle_table, twiddle_stride, fft_size, *block_exponent, scale_method)} & Calculates the FFT of the input signal\\
+		\mintinline[breaklines]{c}{ifft_fr16(input, output, twiddle_table, twiddle_stride, fft_size, *block_exponent, scale_method)} & Calculates the inverse FFT of the input signal. \\
+		\mintinline{c}{cmlt_fr16(a, b)} & Multiplies two complex fract16 values. \\
+		\mintinline{c}{sub_fr1x32(a, b)}& Subtracts two complex fract32 values. \\
+		\mintinline[breaklines]{c}{atan2_fr16(imaginary_part, real_part)} & Find the argument of a complex fract16 value. \\
 		\bottomrule
-	\end{tabular}
+	\end{tabularx}
+	\caption{The used optimized functions.}
 	\label{tab:optimized_func}
 \end{table}
 
-$twiddle\_table$ is a table made in the setup of the program. It is $W_n = cos(\frac{2\pi kn}{N})-jsin(\frac{2\pi kn}{N})$. It is made so that the FFT and IFFT are executed faster since these function don't have to calculate this part of the equation but can just take the value from the $twiddle\_table$. As long as the size of the FFT or IFFT doesn't change these values in the twiddle factor don't have to be calculated again.
-
+\mintinline{c}{twiddle_table} is a table made in the setup of the program.
+It is $W_n = \cos(\frac{2\pi kn}{N})-j\sin(\frac{2\pi kn}{N})$.
+It is made so that the FFT and IFFT are executed faster since these function do not have to calculate this part of the equation but can just take the value from the \mintinline{c}{twiddle_table}.
+As long as the size of the FFT or IFFT does not change these values in the twiddle factor does not have to be calculated again.
 
 \FloatBarrier
