@@ -3,3 +3,11 @@
 
 \chapter{Abstract}
 \label{sec:Abstract}
+This project has had the aim to create a real time auto tuner for use on stage during live performances.
+The scope was narrowed to get a better understanding of the necessary steps, and the end result focuses on creating a pitch shifter.
+Starting with shifting only a single sine and presenting thoughts on a model which could be used to determine a complete tone.
+
+A Matlab model based on determining the Instantaneous Frequency using the Hilbert Transform and generating a new sine has been created.
+
+The Instantaneous Frequency finder has been implemented on the ADSP-BF533 using the CrossCore framework and the real time aspect of the issue has been tested.
+A single sine input frequency can be determined and a new one generated in a maximum of \SI{3.21}{\milli\second}.
