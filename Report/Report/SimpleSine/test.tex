@@ -46,13 +46,13 @@ Secondly the size and speed had same prioritization in the optimization settings
 And lastly where the speed was the focus. The result can be seen on
 \begin{table}
 	\centering
-	\begin{tabularx}{0.8\textwidth}{l c c c}
+	\begin{tabularx}{0.95\textwidth}{l c c c c}
 		\toprule
-		{\textbf{Optimized for:}} & \textbf{Size} & \textbf{50\% Size 50\% Speed} & \textbf{Speed} \\
+		{\textbf{Optimized for:}} & \textbf{None} & \textbf{Size} & \textbf{50\% Size 50\% Speed} & \textbf{Speed} \\
 		\midrule
-		\textbf{Hilbert transform} & \num{3582} & \num{3577} & \num{3554} \\
-		\textbf{Sine generator} & \num{115} & \num{115} & \num{115} \\
-		\textbf{Total} & \num{3697} & \num{3692} & \num{3669} \\
+		\textbf{Hilbert transform} & \num{3708} & \num{3582} & \num{3577} & \num{3554} \\
+		\textbf{Sine generator} & \num{143} & \num{115} & \num{115} & \num{115} \\
+		\textbf{Total} & \num{3851} & \num{3697} & \num{3692} & \num{3669} \\
 		\bottomrule
 	\end{tabularx}
 	\caption{The cycle usage with different settings for the optimization function in the cross core environment. Every value is shown in $\frac{\text{cycles}}{\text{sample}}$.}
