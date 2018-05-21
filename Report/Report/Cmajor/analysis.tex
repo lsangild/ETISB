@@ -2,7 +2,15 @@
 % !TEX spellcheck = en_GB
 
 \section{Analysis}
-In contrast to the pure sine, the C-major consists of several frequencies, as shown in \fxnote{Figure \url{https://people.ece.cornell.edu/land/courses/ece4760/FinalProjects/f2014/org5/website/website/index.html}}.
+In contrast to the pure sine, the C-major consists of several frequencies, as shown in \cref{fig:fftc4}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{gfx/fft_C4.jpg}
+	\caption{Frequency spectrum of C$_4$ played on a piano \cite{fft_c4}.}
+	\label{fig:fftc4}
+\end{figure}
+
 These frequencies are evenly spaced, and the solutions presented in \cref{sec:simpleanal} are still valid to use.
 Here the solution of changing the sampling frequency is still not valid due to limitations on the Blackfin, and the primary target of the analysis is if it is possible to use the same approach as in the pure sine implementation: Creating a new tone at the target frequency.
 
