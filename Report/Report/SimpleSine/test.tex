@@ -34,7 +34,8 @@ $\frac{1898733 cycles}{512 samples} = 3708 \frac{cyles}{sample}$.
 Which is less then specified in the requirements.
 
 The Blackfin has a maximum speed at \SI{600}{\mega\hertz}.
-Which means it will take $\frac{\num{1898733}}{\SI{600}{\mega\hertz}} = {\SI{3.16}{\milli\second}}$ so the Hilbert transformation should not take more time than it has at its disposal.\fxnote{Better explanation needed}
+Which means it will take $\frac{\num{1898733}}{\SI{600}{\mega\hertz}} = {\SI{3.16}{\milli\second}}$ so the Hilbert transformation uses less time than the time it takes to sample 512 samples since $\SI{3.16}{\milli\second} < \SI{10.7}{\milli\second}$ and it uses less cycles pr. sample then specified in the requirements.
+Concluding the Hilbert transform takes less time than it has at its disposal.
 
 To generate 183 samples, with the sine generator it takes: $\frac{\num{26225} cycles}{183 samples} = \num{143.3}\frac{cycles}{sample}$.
 This brings the total time of finding the frequency and generating one period of it up to \SI{3.21}{\milli\second}, still way below the threshold of \SI{10.7}{\milli\second}.
