@@ -3,14 +3,17 @@
 
 \section{Test}
 \label{sec:test}
-In this section an short introduction to how this project has used test from beginning to the end will be described.
-\subsection{Frequency determination resolution}
+\subsection{Frequency determination}
+\Cref{tab:test} shows the output of the Matlab model and the Blackfin implementation when determining the frequency of a \num{512} samples long input signal.
+The Matlab model was run four times with four different inputs and applied a Hamming window, which the Blackfin implementation did not.
+As can be seen the Matlab model is very precise in determining the frequency whereas the Blackfin implementation is slightly of.
+The Blackfin being not as precise as the Matlab model can be attributed mostly to the lacking window and to quantization errors.
+
 \begin{table}
-	\fxnote{better description or table view, i dont get it atm.}
 	\centering
 	\begin{tabular}{c | c c c c c | c}
 		\toprule
-		Test freq (Hz) & \multicolumn{4}{l}{Matlab freq (Hz)} & & CC freq (Hz) \\
+		Test freq (Hz) & \multicolumn{4}{l}{Matlab freq (Hz)} & & Blackfin freq (Hz) \\
 		\midrule
 		\num{245} & \num{245.13} & \num{244.93} & \num{244.85} & \num{245.03} && \num{237}\\
 		\num{350} & \num{349.90} & \num{349.94} & \num{349.88} & \num{349.96} && \num{349}\\
