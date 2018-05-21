@@ -18,7 +18,7 @@ The issue of changing the frequency of a pure sine wave can be handled in a numb
 	\item Postpad with extra samples starting at the right phase if the ratio is larger than 1. Remove samples if ratio is less than 1.
 	\item Play at new sampling frequency.
 \end{enumerate}
-Although Matlab is able to play at different sample rates, the Blackfin has a very limited number of sample frequencies to choose from, making this approach unusable\cite{AD1836A}.
+Although Matlab is able to play at different sample rates, the Blackfin has a very limited number of sample frequencies to choose from, making this approach unusable\cite[p.~19]{AD1836A}.
 
 \paragraph{Creating a new sine at the target frequency} seems to be the most versatile possibility, as you can easily control the frequency and the phase between blocks. The drawback is that calculating the sine is an expensive operation. The steps required are
 \begin{enumerate}

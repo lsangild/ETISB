@@ -145,7 +145,7 @@ A MoSCoW based on the above use case is presented below to account for the funct
 	Derived from R1, where $f_{max}=\SI{1046.5}{\hertz}$ then minimum sampling frequency must be $fs_{min} = f_{max}\cdot 2 = \SI{2093}{\hertz}$.
 	\item[DR2] The filter latency must be delayed by a maximum of \num{2000} samples.
 	Derived from R3 where the latency is less than \SI{50}{\milli\second}, $f_s = \SI{48}{\kilo\hertz}$, $t_d = \SI{41}{\milli\second}$.
-	\item[DR3] The filter must use a maximum of \num{11875} cycles of DSP processing per sample. Derived from R6, R7 and DR1.
+	\item[DR3] The filter must use a maximum of \num{11875} cycles of DSP processing per sample. Derived from R6, R7, DR1 and maximum clockspeed of the BF533 \cite[p.~3]{BD533}.
 	$\frac{\SI{600}{\mega\hertz}}{\SI{48}{\kilo\hertz}}\cdot\SI{95}{\percent} = \num{11875}$.
 \end{itemize}
 
