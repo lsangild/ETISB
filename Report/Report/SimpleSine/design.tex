@@ -65,7 +65,7 @@ The last phase of the system will take the final discrete signal and through a D
 
 \subsection{Quantization} 
 There will be a quantization error on the IIR low pass filter, but since the filter is not steep and have rather long time to get to the stop band, the low pass filter does not suffer significantly from the quantization, as can be seen in \cref{fig:quant_error_filter} where the max difference was found to be $\SI{<0.5}{\percent} $.
-Thus the quantization error for this specific filter is negligible, but the implementation this filter should be a FIR low pass filter since it is what works with the build in functions.
+Thus the quantization error for this specific filter is negligible, but the implementation of this filter should be a FIR low pass filter since it is what works with the build in functions.
 
 \begin{figure}
 	\centering

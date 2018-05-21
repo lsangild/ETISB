@@ -5,7 +5,7 @@
 \label{sec:impl}
 The implementation has been done in the framework made by our supervisor Kim Bjerge.
 The complete idea of the system has not been implemented on the Blackfin.
-What has been implemented on the blackfin is the Instantaneous Frequency algorithm, which determines the main frequency in the signal.
+What has been implemented on the blackfin is the Instantaneous Frequency algorithm, which determines the main frequency in the signal and a sine generator.
 To the framework has been added a function called \mintinline{c}{hilbert()} as can be seen below and and a function called \mintinline{c}{sineGenerator()}.
 Before the \mintinline{c}{hilbert()} is called the FFT of the signal will be made using the function 
 
@@ -73,7 +73,7 @@ void DynamicFilter::hilbert(){
 		
 }
 \end{minted}
-Now the Instantaneous Frequency finding starts. First the argument of every value of the IFFT signal is found using \mintinline{c}{atan2}.
+Now the Instantaneous Frequency finding starts. First the argument of every value of the IFFT signal is found using \mintinline{c}{atan2_fr16}.
 Afterwards the remainder is found after the subtraction of two arguments.
 Lastly the difference is found and then a mean of the middle values are used to find the meanFreq.
 
