@@ -1,8 +1,9 @@
 %% Load data in stead
 Fs = 48000;
-y = csvread('x_signal245.txt');
+y = csvread('x_chirp245_521.txt');
 y(:,2) = []; % Remove extra column
 blocksize = 512;
+%scale = max(abs(y));
 
 % Check if blocksize is valid
 assert(ismember(blocksize, [2^7, 2^8, 2^9, 2^10, 2^11]) && blocksize <= length(y));
@@ -31,7 +32,7 @@ for i = 0:(length(y)/blocksize - 1)
   y_block = y_block .* h;
 
   %% Home made
-  scale = 2^15;
+  scale = 2^15 - 1;
   z = getIF(y_block, Fs, scale);
   
   % Find frequency
@@ -39,7 +40,7 @@ for i = 0:(length(y)/blocksize - 1)
   
   % Find nearest C-major frequency and create signal
   pianoFreq = findPiano(freq(i + 1));
-  [out((i * blocksize + 1):((i + 1) * blocksize)), phase] = genSine(blocksize, Fs, pianoFreq, phase, max(y_block));
+  [out((i * blocksize + 1):((i + 1) * blocksize)), phase] = genSine(blocksize, Fs, pianoFreq, phase, scale);
 
   % Check the frequency of the new signal
   z_new = getIF(out((i * blocksize + 1):((i + 1) * blocksize))', Fs, scale);
@@ -70,3 +71,13 @@ xlim([0,t(end)])
 grid on
 xlabel('Time (s)')
 ylabel('Amplitude')
+
+% Plot input vs output frequency
+figure
+plot([1:length(freq)] .* (blocksize / Fs), freq);
+hold on
+plot([1:length(freq)] .* (blocksize / Fs), newFreq);
+xlabel(['Time (s)'])
+ylabel(['Frequecy (Hz)'])
+legend('Input frequency', 'Output frequency', 'location', 'southeast');
+grid on
