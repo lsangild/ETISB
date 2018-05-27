@@ -78,6 +78,14 @@ plot([1:length(freq)] .* (blocksize / Fs), freq);
 hold on
 plot([1:length(freq)] .* (blocksize / Fs), newFreq);
 xlabel(['Time (s)'])
-ylabel(['Frequecy (Hz)'])
+ylabel(['Frequency (Hz)'])
 legend('Input frequency', 'Output frequency', 'location', 'southeast');
 grid on
+
+% Show output phases match
+figure
+plot(1:512, out(1:512), '.');
+hold on
+plot(513:1024, out(513:1024), '.');
+xlabel(['Sample #'])
+ylabel(['Amplitude'])
