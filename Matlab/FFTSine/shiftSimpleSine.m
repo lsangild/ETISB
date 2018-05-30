@@ -28,15 +28,15 @@ else
     dir = -1;
   else
     error('No slope at end of signal');
-  endif
+  end
   %% Find phase shift
   phase = asin(signal(end));
   if (dir == (-1))
     phase = pi - phase;
-  endif
+  end
   tail = [1:1:N_extra]'.*(1/newFs);
   tail = sin(2*pi*newTone.*tail + phase);
   newSignal = [signal; tail];
-endif
+end
 
 end
